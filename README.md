@@ -22,6 +22,14 @@ Since it is OpenSource, it is compatible, both technically and legally, with Vis
 To make development and distribution simpler, we copy any compiled/built `.mp`, `.mpb` and `.xml`-files to the /LatestBuild folder.  
 Easiest way to do this is using the *Auto Deploy* extension for Visual Studio. Configure it to copy these files to `../LatestBuild`.
 
+### Strong Name Key-file for Signing
+
+We do **not** distribute this with the repository. Feel free to make your own for development, but we prefer to keep control over who can sign the MP using the "official" key. 
+Functionally, this means that you can modify and sign with your own Strong Name Key-file, but any user have to remove the version available from this repository before import. That way, we can say that if there is a key issue on import, they are not using our signed MP. 
+
+However, any approved pull-request will trigger a build using our key and those changes will be included in our distributed MP.  
+We would suggest that you do NOT include your `.snk`-file in your pull-requests. In fact, add it to your `.gitignore`-file or simply rename your local key to the same filename we use and will all go automatically.
+
 ## Branches
 
 ### master
