@@ -5,12 +5,22 @@ Uses the KEMP REST-API instead of SNMP.
 
 ## How to contribute
 
-- Create your own fork to develop against, always use the correct branch/tag as base for your changed (se @branches and @tags)
+- Create your own fork to develop against, always use the correct branch/tag as base for your changed (see [branches](#Branches) and [tags](#Tags))
 - Create a suitable branch for your changes to work on
 - Before starting, make sure you're in sync with the upstream repository
 - Write useful commit messages (we need to understand the "what" and "why")
 - Maintain the changelog
 - Pull from upstream and test merge before creating a pull-request
+
+## Project dependencies
+
+### IDE
+
+The project is developed using **Visual Studio 2015+** with **Visual Studio Authoring Extensions** installed.
+Since it is OpenSource, it is compatible, both technically and legally, with Visual Studio Community Edition.
+
+To make development and distribution simpler, we copy any compiled/built `.mp`, `.mpb` and `.xml`-files to the /LatestBuild folder.  
+Easiest way to do this is using the *Auto Deploy* extension for Visual Studio. Configure it to copy these files to `../LatestBuild`.
 
 ## Branches
 

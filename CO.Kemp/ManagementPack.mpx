@@ -1,0 +1,12 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="CO.Kemp">
+          <Name>CO Kemp</Name>
+          <Description><![CDATA[Provides basic discovery and monitoring of KEMP LoadMaster Nodes and Clusters using the REST-API instead of SNMP.]]></Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

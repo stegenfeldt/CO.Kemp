@@ -1,0 +1,17 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <SecureReferences>
+      <SecureReference ID="CO.Kemp.KempRunasProfile" Accessibility="Public"/>
+    </SecureReferences>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="CO.Kemp.KempRunasProfile">
+          <Name>KEMP Runas Profile</Name>
+          <Description><![CDATA[Used to manage credentials for monitoring KEMP clusters/devices. No real support for multiple credentials in this version, create a read-only user with the same username/password in each cluster for now...]]></Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>
