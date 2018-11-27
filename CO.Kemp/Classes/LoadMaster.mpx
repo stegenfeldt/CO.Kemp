@@ -1,0 +1,95 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+        <ClassType ID="CO.Kemp.LoadMaster" Base="System!System.ApplicationComponent" Accessibility="Public" Abstract="false" Hosted="false" Singleton="false">
+          <Property ID="hostname" Key="true" Type="string" />
+          <Property ID="managementurl" Key="true" Type="string" />
+          <Property ID="version" Key="false" Type="string" />
+          <Property ID="ha1hostname" Key="false" Type="string" />
+          <Property ID="ha2hostname" Key="false" Type="string" />
+          <Property ID="wuiport" Key="false" Type="int" />
+          <Property ID="sshport" Key="false" Type="int" />
+          <Property ID="snmplocation" Key="false" Type="string" />
+          <Property ID="serialnumber" Key="false" Type="string" />
+          <Property ID="ntphost" Key="false" Type="string" />
+          <Property ID="dfltgw" Key="false" Type="string" />
+          <Property ID="timezone" Key="false" Type="string" />
+          <Property ID="SyslogPort" Key="false" Type="int" />
+          <Property ID="radiusserver" Key="false" Type="string" />
+          <Property ID="nameserver" Key="false" Type="string" />
+        </ClassType>
+      </ClassTypes>
+    </EntityTypes>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="CO.Kemp.LoadMaster">
+          <Name>KEMP LoadMaster</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.LoadMaster" SubElementID="hostname">
+          <Name>Hostname</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.LoadMaster" SubElementID="managementurl">
+          <Name>Management URL</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.LoadMaster" SubElementID="version">
+          <Name>Version</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.LoadMaster" SubElementID="ha1hostname">
+          <Name>HA Primary Hostname</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.LoadMaster" SubElementID="ha2hostname">
+          <Name>HA Secondary Hostname</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.LoadMaster" SubElementID="wuiport">
+          <Name>Web UI Port</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.LoadMaster" SubElementID="sshport">
+          <Name>SSH Port</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.LoadMaster" SubElementID="snmplocation">
+          <Name>SNMP Location</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.LoadMaster" SubElementID="serialnumber">
+          <Name>Serialnumber</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.LoadMaster" SubElementID="ntphost">
+          <Name>NTP Host</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.LoadMaster" SubElementID="dfltgw">
+          <Name>Default Gateway</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.LoadMaster" SubElementID="timezone">
+          <Name>Time Zone</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.LoadMaster" SubElementID="SyslogPort">
+          <Name>SysLog Port</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.LoadMaster" SubElementID="radiusserver">
+          <Name>RADIUS Server</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.LoadMaster" SubElementID="nameserver">
+          <Name>Nameserver</Name>
+          <Description>Configured DNS Lookup server</Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

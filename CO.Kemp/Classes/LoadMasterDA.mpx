@@ -1,0 +1,20 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+        <ClassType ID="CO.Kemp.LoadMasterDA" Base="System!System.Service" Accessibility="Public" Abstract="false" Hosted="false" Singleton="true">
+        </ClassType>
+      </ClassTypes>
+    </EntityTypes>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="CO.Kemp.LoadMasterDA">
+          <Name>KEMP LoadMaster Overview</Name>
+          <Description>This distributed application contains your LoadMaster Nodes, Virtual Services and Real Servers.</Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

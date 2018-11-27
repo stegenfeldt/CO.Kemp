@@ -1,0 +1,35 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monitoring>
+    <Discoveries>
+      <Discovery ID="CO.Kemp.InfraDiscovery.Discovery" Target="CO.Kemp.ResourcePool" Enabled="false" Remotable="true">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryClass TypeID="CO.Kemp.LoadMaster" />
+          <DiscoveryClass TypeID="CO.Kemp.VirtualService" />
+          <DiscoveryClass TypeID="CO.Kemp.SubVirtualService" />
+          <DiscoveryClass TypeID="CO.Kemp.RealServer" />
+          <DiscoveryRelationship TypeID="CO.Kemp.VirtualServiceContainsRealServer" />
+          <DiscoveryRelationship TypeID="CO.Kemp.LoadMasterHostsVirtualService" />
+          <DiscoveryRelationship TypeID="CO.Kemp.VirtualServiceHostsSubVirtualService" />
+          <DiscoveryRelationship TypeID="CO.Kemp.SubVirtualServiceContainsRealServer" />
+          <DiscoveryRelationship TypeID="CO.Kemp.LoadMasterDAContainsLoadMaster" />
+        </DiscoveryTypes>
+        <DataSource ID="DiscoveryDS" TypeID="CO.Kemp.InfraDiscovery.ScriptDataSource" >
+          <LoadMasterBaseUrls>https://loadmaster.url</LoadMasterBaseUrls>
+          <Debug>false</Debug>
+          <IntervalSeconds>14400</IntervalSeconds>
+          <TimeoutSeconds>120</TimeoutSeconds>
+        </DataSource>
+      </Discovery>
+    </Discoveries>
+  </Monitoring>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="CO.Kemp.InfraDiscovery.Discovery">
+          <Name>KEMP Infrastructure Discovery</Name>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

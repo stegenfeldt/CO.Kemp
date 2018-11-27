@@ -1,0 +1,58 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <ModuleTypes>
+      <ProbeActionModuleType Accessibility="Internal" ID="CO.Kemp.InfraDiscovery.ScriptProbeAction">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element name="LoadMasterBaseUrls" type="NonNullString" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="Debug" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="TimeoutSeconds" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <ModuleImplementation>
+          <Composite>
+            <MemberModules>
+              <ProbeAction ID="Script" TypeID="Windows!Microsoft.Windows.PowerShellDiscoveryProbe">
+                <ScriptName>Get-KempInfra.ps1</ScriptName>
+                <ScriptBody>$IncludeFileContent/Scripts/Get-KempInfra.ps1$</ScriptBody>
+                <Parameters>
+                  <Parameter>
+                    <Name>LoadMasterBaseUrls</Name>
+                    <Value>$Config/LoadMasterBaseUrls$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>Debug</Name>
+                    <Value>$Config/Debug$</Value>
+                  </Parameter>
+<!--                  <Parameter>
+                    <Name>kempUser</Name>
+                    <Value>$RunAs[Name='CO.Kemp.KempRunasProfile']/UserName$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>kempPass</Name>
+                    <Value>$RunAs[Name='CO.Kemp.KempRunasProfile']/Password$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>sourceId</Name>
+                    <Value>$MPElement$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>targetId</Name>
+                    <Value>$Target/Id$</Value>
+                  </Parameter>-->
+                </Parameters>
+                <TimeoutSeconds>300</TimeoutSeconds>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="Script" />
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.Discovery.Data</OutputType>
+        <InputType>System!System.BaseData</InputType>
+      </ProbeActionModuleType>
+    </ModuleTypes>
+  </TypeDefinitions>  
+</ManagementPackFragment>
