@@ -350,7 +350,7 @@ foreach ($url in $LoadMasterBaseUrls) {
                 $logString += "`n`t`tVS: $identifier`tenabled=$($vs.Enable),Status=$($vs.Status)"
 
 				foreach ($rsKey in $rsHt.Keys) {
-					if ($rsHt[$rsKey].RsIndex -eq $vs.Index ) {
+					if ($rsHt[$rsKey].VSIndex -eq $vs.Index ) {
 						# RS (in VS)
                         $rs = $rsHt[$rsKey]
                         $identifier = "$($allHt.managementhost)-vs$($vsKey)-rs$($rsKey)" #using this as a composite key property
@@ -389,7 +389,7 @@ foreach ($url in $LoadMasterBaseUrls) {
 
 
                         foreach ($rsKey in $rsHt.Keys) {
-                            if ($rsHt[$rsKey].RsIndex -eq $subVS.Index ) {
+                            if ($rsHt[$rsKey].VSIndex -eq $subVS.Index ) {
                                 # RS (in SubVS)
                                 $rs = $rsHt[$rsKey]
                                 $identifier = "$($allHt.managementhost)-vs$($vsKey)-subvs$($subVSKey)-rs$($rsKey)" #using this as a composite key property

@@ -342,6 +342,7 @@ foreach ($url in $urls) {
 				$vsInstance.AddProperty("$MPElement[Name='CO.Kemp.LoadMaster']/managementurl$", $url) #for LM->VS Relationship
                 $vsInstance.AddProperty("$MPElement[Name='System!System.Entity']/DisplayName$", $vs.NickName)
                 $vsInstance.AddProperty("$MPElement[Name='CO.Kemp.VirtualService']/VSIndex$", $identifier)
+				$vsInstance.AddProperty("$MPElement[Name='CO.Kemp.VirtualService']/VSAddress$", $vs.VSAddress)
                 $vsInstance.AddProperty("$MPElement[Name='CO.Kemp.VirtualService']/MasterVSID$", $vs.MasterVSID)
                 $vsInstance.AddProperty("$MPElement[Name='CO.Kemp.VirtualService']/Port$", $vs.Port)
                 $vsInstance.AddProperty("$MPElement[Name='CO.Kemp.VirtualService']/NickName$", $vs.NickName)
@@ -414,6 +415,7 @@ foreach ($url in $urls) {
 						$subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.LoadMaster']/hostname$", $allHt.managementhost) #for LM->VS Relationship
 						$subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.LoadMaster']/managementurl$", $url) #for LM->VS Relationship
                         $subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.SubVirtualService']/MasterVSID$", $subVS.MasterVSID)
+						$subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.SubVirtualService']/VSAddress$", $subVS.VSAddress)
                         $subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.SubVirtualService']/Port$", $subVS.Port)
                         $subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.SubVirtualService']/NickName$", $subVS.NickName)
                         $subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.SubVirtualService']/Protocol$", $subVS.Protocol)

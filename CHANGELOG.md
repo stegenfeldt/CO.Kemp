@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Updated changelog with [v1.0.0-alpha]
 
+### Fixed
+- Issue #10, RS Containment discovery is now connecting the correct RS to VS/SubVS.
+- Spellcheck on VS/SubVS displaystrings
+- VSAddress on VS/SubVS is now populated
+
 ## [v1.0.0-alpha]
 ### Added
 - Changelog
