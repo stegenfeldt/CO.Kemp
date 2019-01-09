@@ -299,7 +299,7 @@ foreach ($url in $LoadMasterBaseUrls) {
         $vsHt = $kemp.GetVirtualServices() #VirtualService (incl. SubVS) information
         $rsHt = $kemp.GetRealServers() # RealServer information
         $allHt = $kemp.GetAll() # This is where you get LoadMaster node information
-        # Cluster API is not accessible unless you're admin
+        # Cluster API is not accessible unless you're admin, we'll deal with that later
         #$clHt = $kemp.GetClusters() 
     }
     catch {
@@ -312,7 +312,7 @@ foreach ($url in $LoadMasterBaseUrls) {
         $vsHt | ConvertTo-Json | Out-File -FilePath "$tempDir\vs.json"
         $rsHt | ConvertTo-Json | Out-File -FilePath "$tempDir\rs.json"
         $allHt | ConvertTo-Json | Out-File -FilePath "$tempDir\all.json"
-        # Cluster API is not accessible unless you're admin
+        # Cluster API is not accessible unless you're admin, we'll deal with that later
         #$clHt | ConvertTo-Json | Out-File -FilePath "$($env:TEMP)\cl.json"
     }
 
@@ -349,6 +349,25 @@ foreach ($url in $LoadMasterBaseUrls) {
 
                 $logString += "`n`t`tVS: $identifier`tenabled=$($vs.Enable),Status=$($vs.Status)"
 
+				foreach ($rsKey in $rsHt.Keys) {
+					if ($rsHt[$rsKey].RsIndex -eq $vs.Index ) {
+						# RS (in VS)
+                        $rs = $rsHt[$rsKey]
+                        $identifier = "$($allHt.managementhost)-vs$($vsKey)-rs$($rsKey)" #using this as a composite key property
+
+                        # prepare RS propertybag info
+						$pbHTArray.Add(@{
+							"objecttype" = "rs"
+							"index" = $identifier
+							"status" = $rs.Status
+							"enabled" = $rs.Enable
+							"identifier" = $identifier
+						})
+
+                        $logString += "`n`t`t`tRS: $($rsKey)-$($rs.Addr)"
+                    }
+                }
+
                 # Select and Parse SubVS
                 foreach ($subVSKey in $vsHt.Keys) {
                     if ($vsHt[$subVSKey].MasterVSID -eq $vs.Index) {
@@ -367,10 +386,28 @@ foreach ($url in $LoadMasterBaseUrls) {
                         }) | Out-Null
 
                         $logString += "`n`t`t`tSubVS: $identifier`tenabled=$($subVS.Enable),status=$($subVS.Status)"
+
+
+                        foreach ($rsKey in $rsHt.Keys) {
+                            if ($rsHt[$rsKey].RsIndex -eq $subVS.Index ) {
+                                # RS (in SubVS)
+                                $rs = $rsHt[$rsKey]
+                                $identifier = "$($allHt.managementhost)-vs$($vsKey)-subvs$($subVSKey)-rs$($rsKey)" #using this as a composite key property
+
+								# prepare RS propertybag info
+								$pbHTArray.Add(@{
+									"objecttype" = "rs"
+									"index" = $identifier
+									"status" = $rs.Status
+									"enabled" = $rs.Enable
+									"identifier" = $identifier
+								})
+                                $logString += "`n`t`t`t`tRS: $($rsKey)-$($rs.Addr)"
+                            }
+                        }
+
                     }
                 }
-
-                #TODO Add RealServer propertybag
             }
         }
     }
