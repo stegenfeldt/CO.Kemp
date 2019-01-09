@@ -34,7 +34,7 @@
           <Description></Description>
         </DisplayString>
         <DisplayString ElementID="CO.Kemp.VirtualService" SubElementID="VSAddress">
-          <Name>VS Addres</Name>
+          <Name>VS Address</Name>
           <Description></Description>
         </DisplayString>
         <DisplayString ElementID="CO.Kemp.VirtualService" SubElementID="MasterVSID">

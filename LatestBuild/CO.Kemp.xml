@@ -3,7 +3,7 @@
   <Manifest>
     <Identity>
       <ID>CO.Kemp</ID>
-      <Version>1.0.0.130</Version>
+      <Version>1.0.0.136</Version>
     </Identity>
     <Name>CO.Kemp</Name>
     <References>
@@ -588,6 +588,7 @@ foreach ($url in $urls) {
 				$vsInstance.AddProperty("$MPElement[Name='CO.Kemp.LoadMaster']/managementurl$", $url) #for LM->VS Relationship
                 $vsInstance.AddProperty("$MPElement[Name='System!System.Entity']/DisplayName$", $vs.NickName)
                 $vsInstance.AddProperty("$MPElement[Name='CO.Kemp.VirtualService']/VSIndex$", $identifier)
+				$vsInstance.AddProperty("$MPElement[Name='CO.Kemp.VirtualService']/VSAddress$", $vs.VSAddress)
                 $vsInstance.AddProperty("$MPElement[Name='CO.Kemp.VirtualService']/MasterVSID$", $vs.MasterVSID)
                 $vsInstance.AddProperty("$MPElement[Name='CO.Kemp.VirtualService']/Port$", $vs.Port)
                 $vsInstance.AddProperty("$MPElement[Name='CO.Kemp.VirtualService']/NickName$", $vs.NickName)
@@ -614,7 +615,7 @@ foreach ($url in $urls) {
 				#>
 				
                 foreach ($rsKey in $rsHt.Keys) {
-                    if ($rsHt[$rsKey].RsIndex -eq $vs.Index ) {
+                    if ($rsHt[$rsKey].VSIndex -eq $vs.Index ) {
                         # RS (in VS)
                         $rs = $rsHt[$rsKey]
                         $identifier = "$($allHt.managementhost)-vs$($vsKey)-rs$($rsKey)" #using this as a composite key property
@@ -660,6 +661,7 @@ foreach ($url in $urls) {
 						$subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.LoadMaster']/hostname$", $allHt.managementhost) #for LM->VS Relationship
 						$subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.LoadMaster']/managementurl$", $url) #for LM->VS Relationship
                         $subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.SubVirtualService']/MasterVSID$", $subVS.MasterVSID)
+						$subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.SubVirtualService']/VSAddress$", $subVS.VSAddress)
                         $subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.SubVirtualService']/Port$", $subVS.Port)
                         $subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.SubVirtualService']/NickName$", $subVS.NickName)
                         $subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.SubVirtualService']/Protocol$", $subVS.Protocol)
@@ -685,7 +687,7 @@ foreach ($url in $urls) {
 						#>
 
                         foreach ($rsKey in $rsHt.Keys) {
-                            if ($rsHt[$rsKey].RsIndex -eq $subVS.Index ) {
+                            if ($rsHt[$rsKey].VSIndex -eq $subVS.Index ) {
                                 # RS (in SubVS)
                                 $rs = $rsHt[$rsKey]
                                 $identifier = "$($allHt.managementhost)-vs$($vsKey)-subvs$($subVSKey)-rs$($rsKey)" #using this as a composite key property
@@ -1017,7 +1019,7 @@ class Kemp {
 
         [System.Net.ServicePointManager]::Expect100Continue = $true
         [System.Net.ServicePointManager]::MaxServicePointIdleTime = 10000
-        [System.Net.ServicePointManager]::ServerCertificateValidationCallback = {$true} #DevSkim: ignore DS126185 until 2018-12-01 
+        [System.Net.ServicePointManager]::ServerCertificateValidationCallback = {$true} #DevSkim: ignore DS126185 until 2019-06-01 
         [System.Net.ServicePointManager]::SecurityProtocol = 'Tls11', 'Tls12'
 
         $Request = [System.Net.HttpWebRequest]::Create("$(($this.AdminAdress))/$Url")
@@ -1139,7 +1141,7 @@ foreach ($url in $LoadMasterBaseUrls) {
                 $logString += "`n`t`tVS: $identifier`tenabled=$($vs.Enable),Status=$($vs.Status)"
 
 				foreach ($rsKey in $rsHt.Keys) {
-					if ($rsHt[$rsKey].RsIndex -eq $vs.Index ) {
+					if ($rsHt[$rsKey].VSIndex -eq $vs.Index ) {
 						# RS (in VS)
                         $rs = $rsHt[$rsKey]
                         $identifier = "$($allHt.managementhost)-vs$($vsKey)-rs$($rsKey)" #using this as a composite key property
@@ -1178,7 +1180,7 @@ foreach ($url in $LoadMasterBaseUrls) {
 
 
                         foreach ($rsKey in $rsHt.Keys) {
-                            if ($rsHt[$rsKey].RsIndex -eq $subVS.Index ) {
+                            if ($rsHt[$rsKey].VSIndex -eq $subVS.Index ) {
                                 # RS (in SubVS)
                                 $rs = $rsHt[$rsKey]
                                 $identifier = "$($allHt.managementhost)-vs$($vsKey)-subvs$($subVSKey)-rs$($rsKey)" #using this as a composite key property
@@ -1679,7 +1681,7 @@ else {
           <Description></Description>
         </DisplayString>
         <DisplayString ElementID="CO.Kemp.SubVirtualService" SubElementID="VSAddress">
-          <Name>VS Addres</Name>
+          <Name>VS Address</Name>
           <Description></Description>
         </DisplayString>
         <DisplayString ElementID="CO.Kemp.SubVirtualService" SubElementID="MasterVSID">
@@ -1739,7 +1741,7 @@ else {
           <Description></Description>
         </DisplayString>
         <DisplayString ElementID="CO.Kemp.VirtualService" SubElementID="VSAddress">
-          <Name>VS Addres</Name>
+          <Name>VS Address</Name>
           <Description></Description>
         </DisplayString>
         <DisplayString ElementID="CO.Kemp.VirtualService" SubElementID="MasterVSID">
