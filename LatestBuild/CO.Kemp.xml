@@ -3,7 +3,7 @@
   <Manifest>
     <Identity>
       <ID>CO.Kemp</ID>
-      <Version>1.0.0.131</Version>
+      <Version>1.0.0.130</Version>
     </Identity>
     <Name>CO.Kemp</Name>
     <References>
@@ -619,9 +619,9 @@ foreach ($url in $urls) {
                         $rs = $rsHt[$rsKey]
                         $identifier = "$($allHt.managementhost)-vs$($vsKey)-rs$($rsKey)" #using this as a composite key property
 
-                        # Instantiate SubVS
+                        # Instantiate RS
                         $rsInstance = $discoveryData.CreateClassInstance("$MPElement[Name='CO.Kemp.RealServer']$")
-                        $rsInstance.AddProperty("$MPElement[Name='System!System.Entity']/DisplayName$", "$rsKey-$($rs.Addr):$($rs.Port)")
+                        $rsInstance.AddProperty("$MPElement[Name='System!System.Entity']/DisplayName$", "$($rs.Addr):$($rs.Port) ($($vs.NickName))")
                         $rsInstance.AddProperty("$MPElement[Name='CO.Kemp.RealServer']/RsIndex$", $identifier)
                         $rsInstance.AddProperty("$MPElement[Name='CO.Kemp.RealServer']/Forward$", $rs.Forward)
                         $rsInstance.AddProperty("$MPElement[Name='CO.Kemp.RealServer']/Addr$", $rs.Addr)
@@ -690,9 +690,9 @@ foreach ($url in $urls) {
                                 $rs = $rsHt[$rsKey]
                                 $identifier = "$($allHt.managementhost)-vs$($vsKey)-subvs$($subVSKey)-rs$($rsKey)" #using this as a composite key property
 
-                                # Instantiate SubVS
+                                # Instantiate RS
                                 $rsInstance = $discoveryData.CreateClassInstance("$MPElement[Name='CO.Kemp.RealServer']$")
-                                $rsInstance.AddProperty("$MPElement[Name='System!System.Entity']/DisplayName$", "$rsKey-$($rs.Addr):$($rs.Port)")
+                                $rsInstance.AddProperty("$MPElement[Name='System!System.Entity']/DisplayName$", "$($rs.Addr):$($rs.Port) ($($subVS.NickName))")
                                 $rsInstance.AddProperty("$MPElement[Name='CO.Kemp.RealServer']/RsIndex$", $identifier)
                                 $rsInstance.AddProperty("$MPElement[Name='CO.Kemp.RealServer']/Forward$", $rs.Forward)
                                 $rsInstance.AddProperty("$MPElement[Name='CO.Kemp.RealServer']/Addr$", $rs.Addr)
@@ -716,10 +716,8 @@ foreach ($url in $urls) {
                         }
                     }
                 }
-				
             }
         }
-		
     }
 }
 
@@ -1090,7 +1088,7 @@ foreach ($url in $LoadMasterBaseUrls) {
         $vsHt = $kemp.GetVirtualServices() #VirtualService (incl. SubVS) information
         $rsHt = $kemp.GetRealServers() # RealServer information
         $allHt = $kemp.GetAll() # This is where you get LoadMaster node information
-        # Cluster API is not accessible unless you're admin
+        # Cluster API is not accessible unless you're admin, we'll deal with that later
         #$clHt = $kemp.GetClusters() 
     }
     catch {
@@ -1103,7 +1101,7 @@ foreach ($url in $LoadMasterBaseUrls) {
         $vsHt | ConvertTo-Json | Out-File -FilePath "$tempDir\vs.json"
         $rsHt | ConvertTo-Json | Out-File -FilePath "$tempDir\rs.json"
         $allHt | ConvertTo-Json | Out-File -FilePath "$tempDir\all.json"
-        # Cluster API is not accessible unless you're admin
+        # Cluster API is not accessible unless you're admin, we'll deal with that later
         #$clHt | ConvertTo-Json | Out-File -FilePath "$($env:TEMP)\cl.json"
     }
 
@@ -1140,6 +1138,25 @@ foreach ($url in $LoadMasterBaseUrls) {
 
                 $logString += "`n`t`tVS: $identifier`tenabled=$($vs.Enable),Status=$($vs.Status)"
 
+				foreach ($rsKey in $rsHt.Keys) {
+					if ($rsHt[$rsKey].RsIndex -eq $vs.Index ) {
+						# RS (in VS)
+                        $rs = $rsHt[$rsKey]
+                        $identifier = "$($allHt.managementhost)-vs$($vsKey)-rs$($rsKey)" #using this as a composite key property
+
+                        # prepare RS propertybag info
+						$pbHTArray.Add(@{
+							"objecttype" = "rs"
+							"index" = $identifier
+							"status" = $rs.Status
+							"enabled" = $rs.Enable
+							"identifier" = $identifier
+						})
+
+                        $logString += "`n`t`t`tRS: $($rsKey)-$($rs.Addr)"
+                    }
+                }
+
                 # Select and Parse SubVS
                 foreach ($subVSKey in $vsHt.Keys) {
                     if ($vsHt[$subVSKey].MasterVSID -eq $vs.Index) {
@@ -1158,10 +1175,28 @@ foreach ($url in $LoadMasterBaseUrls) {
                         }) | Out-Null
 
                         $logString += "`n`t`t`tSubVS: $identifier`tenabled=$($subVS.Enable),status=$($subVS.Status)"
+
+
+                        foreach ($rsKey in $rsHt.Keys) {
+                            if ($rsHt[$rsKey].RsIndex -eq $subVS.Index ) {
+                                # RS (in SubVS)
+                                $rs = $rsHt[$rsKey]
+                                $identifier = "$($allHt.managementhost)-vs$($vsKey)-subvs$($subVSKey)-rs$($rsKey)" #using this as a composite key property
+
+								# prepare RS propertybag info
+								$pbHTArray.Add(@{
+									"objecttype" = "rs"
+									"index" = $identifier
+									"status" = $rs.Status
+									"enabled" = $rs.Enable
+									"identifier" = $identifier
+								})
+                                $logString += "`n`t`t`t`tRS: $($rsKey)-$($rs.Addr)"
+                            }
+                        }
+
                     }
                 }
-
-                #TODO Add RealServer propertybag
             }
         }
     }
@@ -1314,7 +1349,7 @@ else {
         <AlertSettings AlertMessage="CO.Kemp.SubVSStatusMonitor.AlertMessage">
           <AlertOnState>Error</AlertOnState>
           <AutoResolve>true</AutoResolve>
-          <AlertPriority>Low</AlertPriority>
+          <AlertPriority>Normal</AlertPriority>
           <AlertSeverity>MatchMonitorHealth</AlertSeverity>
         </AlertSettings>
         <OperationalStates>
@@ -1325,6 +1360,75 @@ else {
         <Configuration>
           <Identifier>$Target/Property[Type='CO.Kemp.SubVirtualService']/VSIndex$</Identifier>
           <Type>SubVS</Type>
+          <IntervalSeconds>600</IntervalSeconds>
+          <SyncTime />
+          <TimeoutSeconds>120</TimeoutSeconds>
+          <ErrorExpression>
+            <And>
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">Property[@Name='enabled']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="String">Y</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">Property[@Name='status']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="String">Down</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </And>
+          </ErrorExpression>
+          <WarningExpression>
+            <SimpleExpression>
+              <ValueExpression>
+                <XPathQuery Type="String">Property[@Name='enabled']</XPathQuery>
+              </ValueExpression>
+              <Operator>Equal</Operator>
+              <ValueExpression>
+                <Value Type="String">N</Value>
+              </ValueExpression>
+            </SimpleExpression>
+          </WarningExpression>
+          <HealthyExpression>
+            <SimpleExpression>
+              <ValueExpression>
+                <XPathQuery Type="String">Property[@Name='status']</XPathQuery>
+              </ValueExpression>
+              <Operator>Equal</Operator>
+              <ValueExpression>
+                <Value Type="String">Up</Value>
+              </ValueExpression>
+            </SimpleExpression>
+          </HealthyExpression>
+        </Configuration>
+      </UnitMonitor>
+      <UnitMonitor ID="CO.Kemp.RealServerStatusMonitor" Accessibility="Public" Enabled="true" Target="CO.Kemp.RealServer" ParentMonitorID="Health!System.Health.AvailabilityState" Remotable="true" Priority="Normal" TypeID="CO.Kemp.StatusMonitor.ThreeStateMonitorType" ConfirmDelivery="false">
+        <Category>AvailabilityHealth</Category>
+        <AlertSettings AlertMessage="CO.Kemp.RealServerStatusMonitor.AlertMessage">
+          <AlertOnState>Error</AlertOnState>
+          <AutoResolve>true</AutoResolve>
+          <AlertPriority>Normal</AlertPriority>
+          <AlertSeverity>Warning</AlertSeverity>
+        </AlertSettings>
+        <OperationalStates>
+          <OperationalState ID="Healthy" MonitorTypeStateID="Healthy" HealthState="Success" />
+          <OperationalState ID="Warning" MonitorTypeStateID="Warning" HealthState="Warning" />
+          <OperationalState ID="Error" MonitorTypeStateID="Error" HealthState="Error" />
+        </OperationalStates>
+        <Configuration>
+          <Identifier>$Target/Property[Type='CO.Kemp.RealServer']/RsIndex$</Identifier>
+          <Type>rs</Type>
           <IntervalSeconds>600</IntervalSeconds>
           <SyncTime />
           <TimeoutSeconds>120</TimeoutSeconds>
@@ -1452,6 +1556,7 @@ else {
   <Presentation>
     <StringResources>
       <StringResource ID="CO.Kemp.SubVSStatusMonitor.AlertMessage" />
+      <StringResource ID="CO.Kemp.RealServerStatusMonitor.AlertMessage" />
       <StringResource ID="CO.Kemp.VirtualServiceStatusMonitor.AlertMessage" />
     </StringResources>
   </Presentation>
@@ -1709,6 +1814,28 @@ else {
           <Description>PossibleIssue</Description>
         </DisplayString>
         <DisplayString ElementID="CO.Kemp.SubVSStatusMonitor" SubElementID="Error">
+          <Name>Down</Name>
+          <Description>Down</Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.RealServerStatusMonitor">
+          <Name>CO Kemp VirtualService Status Monitor</Name>
+          <Description>Checks status of Kemp VirtualService</Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.RealServerStatusMonitor.AlertMessage">
+          <Name>Kemp RS Is Down</Name>
+          <Description>KEMP RealServer is Down!
+
+This might effect the availability of it's VirtualService, depending on the number of available RealServers attached.</Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.RealServerStatusMonitor" SubElementID="Healthy">
+          <Name>Up</Name>
+          <Description>Up</Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.RealServerStatusMonitor" SubElementID="Warning">
+          <Name>PossibleIssue</Name>
+          <Description>PossibleIssue</Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.RealServerStatusMonitor" SubElementID="Error">
           <Name>Down</Name>
           <Description>Down</Description>
         </DisplayString>

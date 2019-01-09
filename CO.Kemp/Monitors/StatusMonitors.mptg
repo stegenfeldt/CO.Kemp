@@ -1,7 +1,7 @@
 <TemplateGroup>
   <Instances>
     <Instance ID="Instance3028a5ee7cf04757bb7b0974d114afec" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
-      <UnitMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <UnitMonitorConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <MonitorType>CO.Kemp.StatusMonitor.ThreeStateMonitorType</MonitorType>
         <MonitorConfig>&lt;Identifier&gt;$Target/Property[Type='CO.Kemp.SubVirtualService']/VSIndex$&lt;/Identifier&gt;&lt;Type&gt;SubVS&lt;/Type&gt;&lt;IntervalSeconds&gt;600&lt;/IntervalSeconds&gt;&lt;SyncTime /&gt;&lt;TimeoutSeconds&gt;120&lt;/TimeoutSeconds&gt;&lt;ErrorExpression&gt;&lt;And&gt;&lt;Expression&gt;&lt;SimpleExpression&gt;&lt;ValueExpression&gt;&lt;XPathQuery Type="String"&gt;Property[@Name='enabled']&lt;/XPathQuery&gt;&lt;/ValueExpression&gt;&lt;Operator&gt;Equal&lt;/Operator&gt;&lt;ValueExpression&gt;&lt;Value Type="String"&gt;Y&lt;/Value&gt;&lt;/ValueExpression&gt;&lt;/SimpleExpression&gt;&lt;/Expression&gt;&lt;Expression&gt;&lt;SimpleExpression&gt;&lt;ValueExpression&gt;&lt;XPathQuery Type="String"&gt;Property[@Name='status']&lt;/XPathQuery&gt;&lt;/ValueExpression&gt;&lt;Operator&gt;Equal&lt;/Operator&gt;&lt;ValueExpression&gt;&lt;Value Type="String"&gt;Down&lt;/Value&gt;&lt;/ValueExpression&gt;&lt;/SimpleExpression&gt;&lt;/Expression&gt;&lt;/And&gt;&lt;/ErrorExpression&gt;&lt;WarningExpression&gt;&lt;SimpleExpression&gt;&lt;ValueExpression&gt;&lt;XPathQuery Type="String"&gt;Property[@Name='enabled']&lt;/XPathQuery&gt;&lt;/ValueExpression&gt;&lt;Operator&gt;Equal&lt;/Operator&gt;&lt;ValueExpression&gt;&lt;Value Type="String"&gt;N&lt;/Value&gt;&lt;/ValueExpression&gt;&lt;/SimpleExpression&gt;&lt;/WarningExpression&gt;&lt;HealthyExpression&gt;&lt;SimpleExpression&gt;&lt;ValueExpression&gt;&lt;XPathQuery Type="String"&gt;Property[@Name='status']&lt;/XPathQuery&gt;&lt;/ValueExpression&gt;&lt;Operator&gt;Equal&lt;/Operator&gt;&lt;ValueExpression&gt;&lt;Value Type="String"&gt;Up&lt;/Value&gt;&lt;/ValueExpression&gt;&lt;/SimpleExpression&gt;&lt;/HealthyExpression&gt;</MonitorConfig>
         <MonitorOperationalStates>
@@ -37,7 +37,7 @@
         <Priority>Normal</Priority>
         <AlertAutoResolve>true</AlertAutoResolve>
         <AlertOnState>Error</AlertOnState>
-        <AlertPriority>Low</AlertPriority>
+        <AlertPriority>Normal</AlertPriority>
         <AlertSeverity>MatchMonitorHealth</AlertSeverity>
         <AlertName>Kemp SubVS Is Down</AlertName>
         <AlertDescription>The SubVS is reporting that Status is Down!</AlertDescription>
@@ -45,6 +45,52 @@
       </UnitMonitorConfig>
     </Instance>
     <Instance ID="Instanced2f9b5a85b9f4f39a8f5421aa136e227" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
+      <UnitMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <MonitorType>CO.Kemp.StatusMonitor.ThreeStateMonitorType</MonitorType>
+        <MonitorConfig>&lt;Identifier&gt;$Target/Property[Type='CO.Kemp.RealServer']/RsIndex$&lt;/Identifier&gt;&lt;Type&gt;rs&lt;/Type&gt;&lt;IntervalSeconds&gt;600&lt;/IntervalSeconds&gt;&lt;SyncTime /&gt;&lt;TimeoutSeconds&gt;120&lt;/TimeoutSeconds&gt;&lt;ErrorExpression&gt;&lt;And&gt;&lt;Expression&gt;&lt;SimpleExpression&gt;&lt;ValueExpression&gt;&lt;XPathQuery Type="String"&gt;Property[@Name='enabled']&lt;/XPathQuery&gt;&lt;/ValueExpression&gt;&lt;Operator&gt;Equal&lt;/Operator&gt;&lt;ValueExpression&gt;&lt;Value Type="String"&gt;Y&lt;/Value&gt;&lt;/ValueExpression&gt;&lt;/SimpleExpression&gt;&lt;/Expression&gt;&lt;Expression&gt;&lt;SimpleExpression&gt;&lt;ValueExpression&gt;&lt;XPathQuery Type="String"&gt;Property[@Name='status']&lt;/XPathQuery&gt;&lt;/ValueExpression&gt;&lt;Operator&gt;Equal&lt;/Operator&gt;&lt;ValueExpression&gt;&lt;Value Type="String"&gt;Down&lt;/Value&gt;&lt;/ValueExpression&gt;&lt;/SimpleExpression&gt;&lt;/Expression&gt;&lt;/And&gt;&lt;/ErrorExpression&gt;&lt;WarningExpression&gt;&lt;SimpleExpression&gt;&lt;ValueExpression&gt;&lt;XPathQuery Type="String"&gt;Property[@Name='enabled']&lt;/XPathQuery&gt;&lt;/ValueExpression&gt;&lt;Operator&gt;Equal&lt;/Operator&gt;&lt;ValueExpression&gt;&lt;Value Type="String"&gt;N&lt;/Value&gt;&lt;/ValueExpression&gt;&lt;/SimpleExpression&gt;&lt;/WarningExpression&gt;&lt;HealthyExpression&gt;&lt;SimpleExpression&gt;&lt;ValueExpression&gt;&lt;XPathQuery Type="String"&gt;Property[@Name='status']&lt;/XPathQuery&gt;&lt;/ValueExpression&gt;&lt;Operator&gt;Equal&lt;/Operator&gt;&lt;ValueExpression&gt;&lt;Value Type="String"&gt;Up&lt;/Value&gt;&lt;/ValueExpression&gt;&lt;/SimpleExpression&gt;&lt;/HealthyExpression&gt;</MonitorConfig>
+        <MonitorOperationalStates>
+          <OperationalState>
+            <OperationalStateId>Healthy</OperationalStateId>
+            <OperationalStateDisplayName>Up</OperationalStateDisplayName>
+            <MonitorTypeStateId>Healthy</MonitorTypeStateId>
+            <HealthState>Success</HealthState>
+          </OperationalState>
+          <OperationalState>
+            <OperationalStateId>Warning</OperationalStateId>
+            <OperationalStateDisplayName>PossibleIssue</OperationalStateDisplayName>
+            <MonitorTypeStateId>Warning</MonitorTypeStateId>
+            <HealthState>Warning</HealthState>
+          </OperationalState>
+          <OperationalState>
+            <OperationalStateId>Error</OperationalStateId>
+            <OperationalStateDisplayName>Down</OperationalStateDisplayName>
+            <MonitorTypeStateId>Error</MonitorTypeStateId>
+            <HealthState>Error</HealthState>
+          </OperationalState>
+        </MonitorOperationalStates>
+        <MonitorRunAs />
+        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>RealServerStatusMonitor</Id>
+        <DisplayName>CO Kemp VirtualService Status Monitor</DisplayName>
+        <Description>Checks status of Kemp VirtualService</Description>
+        <Target>CO.Kemp.RealServer</Target>
+        <Enabled>true</Enabled>
+        <Category>AvailabilityHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>Error</AlertOnState>
+        <AlertPriority>Normal</AlertPriority>
+        <AlertSeverity>Warning</AlertSeverity>
+        <AlertName>Kemp RS Is Down</AlertName>
+        <AlertDescription>KEMP RealServer is Down!
+
+This might effect the availability of it's VirtualService, depending on the number of available RealServers attached.</AlertDescription>
+        <ConfirmDelivery>false</ConfirmDelivery>
+      </UnitMonitorConfig>
+    </Instance>
+    <Instance ID="Instance48708d7f3b924acc9528362056b18b93" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
       <UnitMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
         <MonitorType>CO.Kemp.StatusMonitor.ThreeStateMonitorType</MonitorType>
         <MonitorConfig>&lt;Identifier&gt;$Target/Property[Type='CO.Kemp.VirtualService']/VSIndex$&lt;/Identifier&gt;&lt;Type&gt;vs&lt;/Type&gt;&lt;IntervalSeconds&gt;600&lt;/IntervalSeconds&gt;&lt;SyncTime /&gt;&lt;TimeoutSeconds&gt;120&lt;/TimeoutSeconds&gt;&lt;ErrorExpression&gt;&lt;And&gt;&lt;Expression&gt;&lt;SimpleExpression&gt;&lt;ValueExpression&gt;&lt;XPathQuery Type="String"&gt;Property[@Name='enabled']&lt;/XPathQuery&gt;&lt;/ValueExpression&gt;&lt;Operator&gt;Equal&lt;/Operator&gt;&lt;ValueExpression&gt;&lt;Value Type="String"&gt;Y&lt;/Value&gt;&lt;/ValueExpression&gt;&lt;/SimpleExpression&gt;&lt;/Expression&gt;&lt;Expression&gt;&lt;SimpleExpression&gt;&lt;ValueExpression&gt;&lt;XPathQuery Type="String"&gt;Property[@Name='status']&lt;/XPathQuery&gt;&lt;/ValueExpression&gt;&lt;Operator&gt;Equal&lt;/Operator&gt;&lt;ValueExpression&gt;&lt;Value Type="String"&gt;Down&lt;/Value&gt;&lt;/ValueExpression&gt;&lt;/SimpleExpression&gt;&lt;/Expression&gt;&lt;/And&gt;&lt;/ErrorExpression&gt;&lt;WarningExpression&gt;&lt;SimpleExpression&gt;&lt;ValueExpression&gt;&lt;XPathQuery Type="String"&gt;Property[@Name='enabled']&lt;/XPathQuery&gt;&lt;/ValueExpression&gt;&lt;Operator&gt;Equal&lt;/Operator&gt;&lt;ValueExpression&gt;&lt;Value Type="String"&gt;N&lt;/Value&gt;&lt;/ValueExpression&gt;&lt;/SimpleExpression&gt;&lt;/WarningExpression&gt;&lt;HealthyExpression&gt;&lt;SimpleExpression&gt;&lt;ValueExpression&gt;&lt;XPathQuery Type="String"&gt;Property[@Name='status']&lt;/XPathQuery&gt;&lt;/ValueExpression&gt;&lt;Operator&gt;Equal&lt;/Operator&gt;&lt;ValueExpression&gt;&lt;Value Type="String"&gt;Up&lt;/Value&gt;&lt;/ValueExpression&gt;&lt;/SimpleExpression&gt;&lt;/HealthyExpression&gt;</MonitorConfig>
