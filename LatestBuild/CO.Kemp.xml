@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ManagementPack SchemaVersion="2.0" ContentReadable="true" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+﻿<?xml version="1.0" encoding="utf-8"?><ManagementPack xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" ContentReadable="true" SchemaVersion="2.0" OriginalSchemaVersion="2.0">
   <Manifest>
     <Identity>
       <ID>CO.Kemp</ID>
-      <Version>1.0.0.148</Version>
+      <Version>1.0.0.149</Version>
     </Identity>
     <Name>CO.Kemp</Name>
     <References>
@@ -42,92 +41,92 @@
   <TypeDefinitions>
     <EntityTypes>
       <ClassTypes>
-        <ClassType ID="CO.Kemp.LoadMaster" Base="System!System.ApplicationComponent" Accessibility="Public" Abstract="false" Hosted="false" Singleton="false">
-          <Property ID="hostname" Key="true" Type="string" />
-          <Property ID="managementurl" Key="true" Type="string" />
-          <Property ID="version" Key="false" Type="string" />
-          <Property ID="ha1hostname" Key="false" Type="string" />
-          <Property ID="ha2hostname" Key="false" Type="string" />
-          <Property ID="wuiport" Key="false" Type="int" />
-          <Property ID="sshport" Key="false" Type="int" />
-          <Property ID="snmplocation" Key="false" Type="string" />
-          <Property ID="serialnumber" Key="false" Type="string" />
-          <Property ID="ntphost" Key="false" Type="string" />
-          <Property ID="dfltgw" Key="false" Type="string" />
-          <Property ID="timezone" Key="false" Type="string" />
-          <Property ID="SyslogPort" Key="false" Type="int" />
-          <Property ID="radiusserver" Key="false" Type="string" />
-          <Property ID="nameserver" Key="false" Type="string" />
+        <ClassType ID="CO.Kemp.LoadMaster" Accessibility="Public" Abstract="false" Base="System!System.ApplicationComponent" Hosted="false" Singleton="false" Extension="false">
+          <Property ID="hostname" Type="string" AutoIncrement="false" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="managementurl" Type="string" AutoIncrement="false" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="version" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="ha1hostname" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="ha2hostname" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="wuiport" Type="int" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="sshport" Type="int" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="snmplocation" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="serialnumber" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="ntphost" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="dfltgw" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="timezone" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="SyslogPort" Type="int" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="radiusserver" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="nameserver" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
         </ClassType>
-        <ClassType ID="CO.Kemp.LoadMasterDA" Base="System!System.Service" Accessibility="Public" Abstract="false" Hosted="false" Singleton="true"></ClassType>
-        <ClassType ID="CO.Kemp.RealServer" Base="System!System.ApplicationComponent" Accessibility="Public" Abstract="false" Hosted="false" Singleton="false">
-          <Property ID="RsIndex" Key="true" Type="string" />
-          <Property ID="VSIndex" Key="false" Type="string" />
-          <Property ID="Addr" Key="false" Type="string" />
-          <Property ID="Port" Key="true" Type="int" />
-          <Property ID="Forward" Key="false" Type="string" />
-          <Property ID="Weight" Key="false" Type="string" />
-          <Property ID="Limit" Key="false" Type="int" />
-          <Property ID="Critical" Key="false" Type="string" />
-          <Property ID="Follow" Key="false" Type="int" />
-          <Property ID="DnsName" Key="false" Type="string" />
+        <ClassType ID="CO.Kemp.LoadMasterDA" Accessibility="Public" Abstract="false" Base="System!System.Service" Hosted="false" Singleton="true" Extension="false" />
+        <ClassType ID="CO.Kemp.RealServer" Accessibility="Public" Abstract="false" Base="System!System.ApplicationComponent" Hosted="false" Singleton="false" Extension="false">
+          <Property ID="RsIndex" Type="string" AutoIncrement="false" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="VSIndex" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="Addr" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="Port" Type="int" AutoIncrement="false" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="Forward" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="Weight" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="Limit" Type="int" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="Critical" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="Follow" Type="int" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="DnsName" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
         </ClassType>
-        <ClassType ID="CO.Kemp.ResourcePool" Base="SC!Microsoft.SystemCenter.ManagementServicePool" Accessibility="Public" Abstract="false" Hosted="false" Singleton="true" />
-        <ClassType ID="CO.Kemp.SubVirtualService" Base="System!System.ApplicationComponent" Accessibility="Public" Abstract="false" Hosted="true" Singleton="false">
-          <Property ID="VSIndex" Key="true" Type="string" />
-          <Property ID="VSAddress" Key="false" Type="string" />
-          <Property ID="MasterVSID" Key="false" Type="int" />
-          <Property ID="Port" Key="false" Type="string" />
-          <Property ID="NickName" Key="false" Type="string" />
-          <Property ID="Protocol" Key="false" Type="string" />
-          <Property ID="QoS" Key="false" Type="int" />
-          <Property ID="Layer" Key="false" Type="int" />
-          <Property ID="VStype" Key="false" Type="string" />
-          <Property ID="NumberOfRSs" Key="false" Type="int" />
-          <Property ID="CheckType" Key="false" Type="string" />
-          <Property ID="CheckUrl" Key="false" Type="string" />
-          <Property ID="ForceL7" Key="false" Type="string" />
-          <Property ID="ForceL4" Key="false" Type="string" />
-          <Property ID="AlertThreshold" Key="false" Type="int" />
+        <ClassType ID="CO.Kemp.ResourcePool" Accessibility="Public" Abstract="false" Base="SC!Microsoft.SystemCenter.ManagementServicePool" Hosted="false" Singleton="true" Extension="false" />
+        <ClassType ID="CO.Kemp.SubVirtualService" Accessibility="Public" Abstract="false" Base="System!System.ApplicationComponent" Hosted="true" Singleton="false" Extension="false">
+          <Property ID="VSIndex" Type="string" AutoIncrement="false" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="VSAddress" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="MasterVSID" Type="int" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="Port" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="NickName" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="Protocol" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="QoS" Type="int" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="Layer" Type="int" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="VStype" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="NumberOfRSs" Type="int" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="CheckType" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="CheckUrl" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="ForceL7" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="ForceL4" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="AlertThreshold" Type="int" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
         </ClassType>
-        <ClassType ID="CO.Kemp.VirtualService" Base="System!System.ApplicationComponent" Accessibility="Public" Abstract="false" Hosted="true" Singleton="false">
-          <Property ID="VSIndex" Key="true" Type="string" />
-          <Property ID="VSAddress" Key="false" Type="string" />
-          <Property ID="MasterVSID" Key="false" Type="int" />
-          <Property ID="Port" Key="false" Type="string" />
-          <Property ID="NickName" Key="false" Type="string" />
-          <Property ID="Protocol" Key="false" Type="string" />
-          <Property ID="QoS" Key="false" Type="int" />
-          <Property ID="Layer" Key="false" Type="int" />
-          <Property ID="VStype" Key="false" Type="string" />
-          <Property ID="NumberOfRSs" Key="false" Type="int" />
-          <Property ID="CheckType" Key="false" Type="string" />
-          <Property ID="CheckUrl" Key="false" Type="string" />
-          <Property ID="ForceL7" Key="false" Type="string" />
-          <Property ID="ForceL4" Key="false" Type="string" />
-          <Property ID="AlertThreshold" Key="false" Type="int" />
+        <ClassType ID="CO.Kemp.VirtualService" Accessibility="Public" Abstract="false" Base="System!System.ApplicationComponent" Hosted="true" Singleton="false" Extension="false">
+          <Property ID="VSIndex" Type="string" AutoIncrement="false" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="VSAddress" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="MasterVSID" Type="int" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="Port" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="NickName" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="Protocol" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="QoS" Type="int" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="Layer" Type="int" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="VStype" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="NumberOfRSs" Type="int" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="CheckType" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="CheckUrl" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="ForceL7" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="ForceL4" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="AlertThreshold" Type="int" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
         </ClassType>
       </ClassTypes>
       <RelationshipTypes>
-        <RelationshipType ID="CO.Kemp.LoadMasterDAContainsLoadMaster" Base="System!System.Containment" Abstract="false" Accessibility="Internal">
-          <Source ID="Source" Type="CO.Kemp.LoadMasterDA" />
-          <Target ID="Target" Type="CO.Kemp.LoadMaster" />
+        <RelationshipType ID="CO.Kemp.LoadMasterDAContainsLoadMaster" Accessibility="Internal" Abstract="false" Base="System!System.Containment">
+          <Source ID="Source" MinCardinality="0" MaxCardinality="2147483647" Type="CO.Kemp.LoadMasterDA" />
+          <Target ID="Target" MinCardinality="0" MaxCardinality="2147483647" Type="CO.Kemp.LoadMaster" />
         </RelationshipType>
-        <RelationshipType ID="CO.Kemp.LoadMasterHostsVirtualService" Base="System!System.Hosting" Abstract="false" Accessibility="Internal">
-          <Source ID="Source" Type="CO.Kemp.LoadMaster" />
-          <Target ID="Target" Type="CO.Kemp.VirtualService" />
+        <RelationshipType ID="CO.Kemp.LoadMasterHostsVirtualService" Accessibility="Internal" Abstract="false" Base="System!System.Hosting">
+          <Source ID="Source" MinCardinality="0" MaxCardinality="2147483647" Type="CO.Kemp.LoadMaster" />
+          <Target ID="Target" MinCardinality="0" MaxCardinality="2147483647" Type="CO.Kemp.VirtualService" />
         </RelationshipType>
-        <RelationshipType ID="CO.Kemp.SubVirtualServiceContainsRealServer" Base="System!System.Containment" Abstract="false" Accessibility="Internal">
-          <Source ID="Source" Type="CO.Kemp.SubVirtualService" />
-          <Target ID="Target" Type="CO.Kemp.RealServer" />
+        <RelationshipType ID="CO.Kemp.SubVirtualServiceContainsRealServer" Accessibility="Internal" Abstract="false" Base="System!System.Containment">
+          <Source ID="Source" MinCardinality="0" MaxCardinality="2147483647" Type="CO.Kemp.SubVirtualService" />
+          <Target ID="Target" MinCardinality="0" MaxCardinality="2147483647" Type="CO.Kemp.RealServer" />
         </RelationshipType>
-        <RelationshipType ID="CO.Kemp.VirtualServiceContainsRealServer" Base="System!System.Containment" Abstract="false" Accessibility="Internal">
-          <Source ID="Source" Type="CO.Kemp.VirtualService" />
-          <Target ID="Target" Type="CO.Kemp.RealServer" />
+        <RelationshipType ID="CO.Kemp.VirtualServiceContainsRealServer" Accessibility="Internal" Abstract="false" Base="System!System.Containment">
+          <Source ID="Source" MinCardinality="0" MaxCardinality="2147483647" Type="CO.Kemp.VirtualService" />
+          <Target ID="Target" MinCardinality="0" MaxCardinality="2147483647" Type="CO.Kemp.RealServer" />
         </RelationshipType>
-        <RelationshipType ID="CO.Kemp.VirtualServiceHostsSubVirtualService" Base="System!System.Hosting" Abstract="false" Accessibility="Internal">
-          <Source ID="Source" Type="CO.Kemp.VirtualService" />
-          <Target ID="Target" Type="CO.Kemp.SubVirtualService" />
+        <RelationshipType ID="CO.Kemp.VirtualServiceHostsSubVirtualService" Accessibility="Internal" Abstract="false" Base="System!System.Hosting">
+          <Source ID="Source" MinCardinality="0" MaxCardinality="2147483647" Type="CO.Kemp.VirtualService" />
+          <Target ID="Target" MinCardinality="0" MaxCardinality="2147483647" Type="CO.Kemp.SubVirtualService" />
         </RelationshipType>
       </RelationshipTypes>
     </EntityTypes>
@@ -135,38 +134,22 @@
       <SecureReference ID="CO.Kemp.KempRunasProfile" Accessibility="Public" />
     </SecureReferences>
     <ModuleTypes>
-      <DataSourceModuleType ID="CO.Kemp.InfraDiscovery.ScriptDataSource" Accessibility="Internal">
+      <DataSourceModuleType ID="CO.Kemp.InfraDiscovery.ScriptDataSource" Accessibility="Internal" Batching="false">
         <Configuration>
           <IncludeSchemaTypes>
             <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
-          </IncludeSchemaTypes>
-          <xsd:element name="LoadMasterBaseUrls" type="NonNullString" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-          <xsd:element name="Debug" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-          <xsd:element name="IntervalSeconds" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-          <xsd:element name="TimeoutSeconds" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-        </Configuration>
+          </IncludeSchemaTypes><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="LoadMasterBaseUrls" type="NonNullString" /><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Debug" type="xsd:string" /><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="IntervalSeconds" type="xsd:integer" /><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TimeoutSeconds" type="xsd:integer" /></Configuration>
         <OverrideableParameters>
-          <OverrideableParameter ID="LoadMasterBaseUrls" ParameterType="string" Selector="$Config/LoadMasterBaseUrls$" />
-          <OverrideableParameter ID="Debug" ParameterType="string" Selector="$Config/Debug$" Comment="'true' or 'false'" />
-          <OverrideableParameter ID="IntervalSeconds" ParameterType="int" Selector="$Config/IntervalSeconds$" />
-          <OverrideableParameter ID="TimeoutSeconds" ParameterType="int" Selector="$Config/TimeoutSeconds$" />
+          <OverrideableParameter ID="LoadMasterBaseUrls" Selector="$Config/LoadMasterBaseUrls$" ParameterType="string" />
+          <OverrideableParameter ID="Debug" Selector="$Config/Debug$" ParameterType="string" />
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int" />
+          <OverrideableParameter ID="TimeoutSeconds" Selector="$Config/TimeoutSeconds$" ParameterType="int" />
         </OverrideableParameters>
-        <ModuleImplementation>
+        <ModuleImplementation Isolation="Any">
           <Composite>
             <MemberModules>
-              <DataSource ID="Scheduler" TypeID="System!System.Discovery.Scheduler">
-                <Scheduler>
-                  <SimpleReccuringSchedule>
-                    <Interval Unit="Seconds">$Config/IntervalSeconds$</Interval>
-                  </SimpleReccuringSchedule>
-                  <ExcludeDates />
-                </Scheduler>
-              </DataSource>
-              <ProbeAction ID="ScriptProbe" TypeID="CO.Kemp.InfraDiscovery.ScriptProbeAction">
-                <LoadMasterBaseUrls>$Config/LoadMasterBaseUrls$</LoadMasterBaseUrls>
-                <Debug>$Config/Debug$</Debug>
-                <TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds>
-              </ProbeAction>
+              <DataSource ID="Scheduler" TypeID="System!System.Discovery.Scheduler"><Scheduler><SimpleReccuringSchedule><Interval Unit="Seconds">$Config/IntervalSeconds$</Interval></SimpleReccuringSchedule><ExcludeDates /></Scheduler></DataSource>
+              <ProbeAction ID="ScriptProbe" TypeID="CO.Kemp.InfraDiscovery.ScriptProbeAction"><LoadMasterBaseUrls>$Config/LoadMasterBaseUrls$</LoadMasterBaseUrls><Debug>$Config/Debug$</Debug><TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds></ProbeAction>
             </MemberModules>
             <Composition>
               <Node ID="ScriptProbe">
@@ -177,32 +160,13 @@
         </ModuleImplementation>
         <OutputType>System!System.Discovery.Data</OutputType>
       </DataSourceModuleType>
-      <DataSourceModuleType ID="CO.Kemp.PerformanceDataMapper.DataSource" Accessibility="Internal">
-        <Configuration>
-          <xsd:element name="Identifier" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-          <xsd:element name="Type" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-          <xsd:element name="IntervalSeconds" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-          <xsd:element name="ObjectName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-          <xsd:element name="CounterName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-          <xsd:element name="InstanceName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-          <xsd:element name="Value" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-        </Configuration>
-        <ModuleImplementation>
+      <DataSourceModuleType ID="CO.Kemp.PerformanceDataMapper.DataSource" Accessibility="Internal" Batching="false">
+        <Configuration><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Identifier" type="xsd:string" /><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Type" type="xsd:string" /><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="IntervalSeconds" type="xsd:integer" /><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ObjectName" type="xsd:string" /><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CounterName" type="xsd:string" /><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="InstanceName" type="xsd:string" /><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Value" type="xsd:string" /></Configuration>
+        <ModuleImplementation Isolation="Any">
           <Composite>
             <MemberModules>
-              <DataSource ID="PropertyBag" TypeID="CO.Kemp.StatusMonitoring.TimedDataSource">
-                <Identifier>$Config/Identifier$</Identifier>
-                <Type>$Config/Type$</Type>
-                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
-                <SyncTime />
-                <TimeoutSeconds>120</TimeoutSeconds>
-              </DataSource>
-              <ConditionDetection ID="DataMapper" TypeID="Perf!System.Performance.DataGenericMapper">
-                <ObjectName>$Config/ObjectName$</ObjectName>
-                <CounterName>$Config/CounterName$</CounterName>
-                <InstanceName>$Config/InstanceName$</InstanceName>
-                <Value>$Config/Value$</Value>
-              </ConditionDetection>
+              <DataSource ID="PropertyBag" TypeID="CO.Kemp.StatusMonitoring.TimedDataSource"><Identifier>$Config/Identifier$</Identifier><Type>$Config/Type$</Type><IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds><SyncTime /><TimeoutSeconds>120</TimeoutSeconds></DataSource>
+              <ConditionDetection ID="DataMapper" TypeID="Perf!System.Performance.DataGenericMapper"><ObjectName>$Config/ObjectName$</ObjectName><CounterName>$Config/CounterName$</CounterName><InstanceName>$Config/InstanceName$</InstanceName><Value>$Config/Value$</Value></ConditionDetection>
             </MemberModules>
             <Composition>
               <Node ID="DataMapper">
@@ -213,57 +177,19 @@
         </ModuleImplementation>
         <OutputType>Perf!System.Performance.Data</OutputType>
       </DataSourceModuleType>
-      <DataSourceModuleType ID="CO.Kemp.StatusMonitoring.TimedDataSource" Accessibility="Internal">
-        <Configuration>
-          <xsd:element name="Identifier" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-          <xsd:element name="Type" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-          <xsd:element name="IntervalSeconds" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-          <xsd:element name="SyncTime" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-          <xsd:element name="TimeoutSeconds" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-        </Configuration>
+      <DataSourceModuleType ID="CO.Kemp.StatusMonitoring.TimedDataSource" Accessibility="Internal" Batching="false">
+        <Configuration><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Identifier" type="xsd:string" /><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Type" type="xsd:string" /><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="IntervalSeconds" type="xsd:integer" /><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SyncTime" type="xsd:string" /><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TimeoutSeconds" type="xsd:integer" /></Configuration>
         <OverrideableParameters>
           <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int" />
           <OverrideableParameter ID="TimeoutSeconds" Selector="$Config/TimeoutSeconds$" ParameterType="int" />
           <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string" />
         </OverrideableParameters>
-        <ModuleImplementation>
+        <ModuleImplementation Isolation="Any">
           <Composite>
             <MemberModules>
-              <DataSource ID="Scheduler" TypeID="System!System.SimpleScheduler">
-                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
-                <SyncTime>$Config/SyncTime$</SyncTime>
-              </DataSource>
-              <ProbeAction ID="ScriptProbe" TypeID="CO.Kemp.StatusMonitoring.ScriptProbe">
-                <TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds>
-              </ProbeAction>
-              <ConditionDetection ID="Filter" TypeID="System!System.ExpressionFilter">
-                <Expression>
-                  <And>
-                    <Expression>
-                      <SimpleExpression>
-                        <ValueExpression>
-                          <XPathQuery Type="String">Property[@Name='identifier']</XPathQuery>
-                        </ValueExpression>
-                        <Operator>Equal</Operator>
-                        <ValueExpression>
-                          <Value Type="String">$Config/Identifier$</Value>
-                        </ValueExpression>
-                      </SimpleExpression>
-                    </Expression>
-                    <Expression>
-                      <SimpleExpression>
-                        <ValueExpression>
-                          <XPathQuery Type="String">Property[@Name='objecttype']</XPathQuery>
-                        </ValueExpression>
-                        <Operator>Equal</Operator>
-                        <ValueExpression>
-                          <Value Type="String">$Config/Type$</Value>
-                        </ValueExpression>
-                      </SimpleExpression>
-                    </Expression>
-                  </And>
-                </Expression>
-              </ConditionDetection>
+              <DataSource ID="Scheduler" TypeID="System!System.SimpleScheduler"><IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds><SyncTime>$Config/SyncTime$</SyncTime></DataSource>
+              <ProbeAction ID="ScriptProbe" TypeID="CO.Kemp.StatusMonitoring.ScriptProbe"><TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds></ProbeAction>
+              <ConditionDetection ID="Filter" TypeID="System!System.ExpressionFilter"><Expression><And><Expression><SimpleExpression><ValueExpression><XPathQuery Type="String">Property[@Name='identifier']</XPathQuery></ValueExpression><Operator>Equal</Operator><ValueExpression><Value Type="String">$Config/Identifier$</Value></ValueExpression></SimpleExpression></Expression><Expression><SimpleExpression><ValueExpression><XPathQuery Type="String">Property[@Name='objecttype']</XPathQuery></ValueExpression><Operator>Equal</Operator><ValueExpression><Value Type="String">$Config/Type$</Value></ValueExpression></SimpleExpression></Expression></And></Expression></ConditionDetection>
             </MemberModules>
             <Composition>
               <Node ID="Filter">
@@ -276,21 +202,15 @@
         </ModuleImplementation>
         <OutputType>System!System.PropertyBagData</OutputType>
       </DataSourceModuleType>
-      <ProbeActionModuleType Accessibility="Internal" ID="CO.Kemp.InfraDiscovery.ScriptProbeAction">
+      <ProbeActionModuleType ID="CO.Kemp.InfraDiscovery.ScriptProbeAction" Accessibility="Internal" Batching="false" PassThrough="false">
         <Configuration>
           <IncludeSchemaTypes>
             <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
-          </IncludeSchemaTypes>
-          <xsd:element name="LoadMasterBaseUrls" type="NonNullString" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-          <xsd:element name="Debug" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-          <xsd:element name="TimeoutSeconds" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-        </Configuration>
-        <ModuleImplementation>
+          </IncludeSchemaTypes><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="LoadMasterBaseUrls" type="NonNullString" /><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Debug" type="xsd:string" /><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TimeoutSeconds" type="xsd:integer" /></Configuration>
+        <ModuleImplementation Isolation="Any">
           <Composite>
             <MemberModules>
-              <ProbeAction ID="Script" TypeID="Windows!Microsoft.Windows.PowerShellDiscoveryProbe">
-                <ScriptName>Get-KempInfra.ps1</ScriptName>
-                <ScriptBody><![CDATA[param(
+              <ProbeAction ID="Script" TypeID="Windows!Microsoft.Windows.PowerShellDiscoveryProbe"><ScriptName>Get-KempInfra.ps1</ScriptName><ScriptBody>param(
     [string] $LoadMasterBaseUrls
 	, [string] $Debug
 )
@@ -507,7 +427,7 @@ class Kemp {
             $Arr += "$Key=$($Parameters[$Key])"
         }
 
-        $ParamStr = [string]::Join("&", $Arr)
+        $ParamStr = [string]::Join("&amp;", $Arr)
         if ($ParamStr.Length -gt 0) {
             $Url = "$($Url)?$($ParamStr)"
         }
@@ -614,7 +534,7 @@ foreach ($url in $urls) {
 
         $logString += "`n`tLM: $($allHt.managementhost)"
 
-        # Instantiate KempDA->LoadMaster relationship
+        # Instantiate KempDA-&gt;LoadMaster relationship
         $lmDAInstance = $discoveryData.CreateClassInstance("$MPElement[Name='CO.Kemp.LoadMasterDA']$") #DA is singleton, don't need to add key properties
         $lmDALMContainmentRelationship = $discoveryData.CreateRelationshipInstance("$MPElement[Name='CO.Kemp.LoadMasterDAContainsLoadMaster']$")
         $lmDALMContainmentRelationship.source = $lmDAInstance
@@ -630,8 +550,8 @@ foreach ($url in $urls) {
                 $identifier = "$($allHt.managementhost)-vs$($vsKey)" #using this as a composite key property
                 # Instantiate VirtualService
                 $vsInstance = $discoveryData.CreateClassInstance("$MPElement[Name='CO.Kemp.VirtualService']$")
-				$vsInstance.AddProperty("$MPElement[Name='CO.Kemp.LoadMaster']/hostname$", $allHt.managementhost) #for LM->VS Relationship
-				$vsInstance.AddProperty("$MPElement[Name='CO.Kemp.LoadMaster']/managementurl$", $url) #for LM->VS Relationship
+				$vsInstance.AddProperty("$MPElement[Name='CO.Kemp.LoadMaster']/hostname$", $allHt.managementhost) #for LM-&gt;VS Relationship
+				$vsInstance.AddProperty("$MPElement[Name='CO.Kemp.LoadMaster']/managementurl$", $url) #for LM-&gt;VS Relationship
                 $vsInstance.AddProperty("$MPElement[Name='System!System.Entity']/DisplayName$", $vs.NickName)
                 $vsInstance.AddProperty("$MPElement[Name='CO.Kemp.VirtualService']/VSIndex$", $identifier)
 				$vsInstance.AddProperty("$MPElement[Name='CO.Kemp.VirtualService']/VSAddress$", $vs.VSAddress)
@@ -652,13 +572,13 @@ foreach ($url in $urls) {
 
                 $logString += "`n`t`tVS: $($vsKey)-$($vs.NickName)"
 
-                <#
-				# Instantiate LoadMaster->VirtualService relationship
+                &lt;#
+				# Instantiate LoadMaster-&gt;VirtualService relationship
                 $lmVSHostingRelationship = $discoveryData.CreateRelationshipInstance("$MPElement[Name='CO.Kemp.LoadMasterHostsVirtualService']$")
                 $lmVSHostingRelationship.source = $lmInstance
                 $lmVSHostingRelationship.target = $vsInstance
                 $discoveryData.AddInstance($lmVSHostingRelationship)
-				#>
+				#&gt;
 				
                 foreach ($rsKey in $rsHt.Keys) {
                     if ($rsHt[$rsKey].VSIndex -eq $vs.Index ) {
@@ -683,7 +603,7 @@ foreach ($url in $urls) {
 
                         $logString += "`n`t`t`tRS: $($rsKey)-$($rs.Addr)"
 
-                        # Instantiate VirtualService->SubVirtualService relationsship
+                        # Instantiate VirtualService-&gt;SubVirtualService relationsship
                         $vsRSContainmentRelationship = $discoveryData.CreateRelationshipInstance("$MPElement[Name='CO.Kemp.VirtualServiceContainsRealServer']$")
                         $vsRSContainmentRelationship.source = $vsInstance
                         $vsRSContainmentRelationship.target = $rsInstance
@@ -703,9 +623,9 @@ foreach ($url in $urls) {
                         $subVSInstance = $discoveryData.CreateClassInstance("$MPElement[Name='CO.Kemp.SubVirtualService']$")
                         $subVSInstance.AddProperty("$MPElement[Name='System!System.Entity']/DisplayName$", $subVS.NickName)
                         $subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.SubVirtualService']/VSIndex$", $identifier)
-						$subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.VirtualService']/VSIndex$", $hostIdentifier) # for VS->SubVS hosting relationship
-						$subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.LoadMaster']/hostname$", $allHt.managementhost) #for LM->VS Relationship
-						$subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.LoadMaster']/managementurl$", $url) #for LM->VS Relationship
+						$subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.VirtualService']/VSIndex$", $hostIdentifier) # for VS-&gt;SubVS hosting relationship
+						$subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.LoadMaster']/hostname$", $allHt.managementhost) #for LM-&gt;VS Relationship
+						$subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.LoadMaster']/managementurl$", $url) #for LM-&gt;VS Relationship
                         $subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.SubVirtualService']/MasterVSID$", $subVS.MasterVSID)
 						$subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.SubVirtualService']/VSAddress$", $subVS.VSAddress)
                         $subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.SubVirtualService']/Port$", $subVS.Port)
@@ -724,13 +644,13 @@ foreach ($url in $urls) {
 
                         $logString += "`n`t`t`tSubVS: $($subVSKey)-$($subVS.NickName)"
 
-						<#
-                        # Instantiate VirtualService->SubVirtualService relationsship
+						&lt;#
+                        # Instantiate VirtualService-&gt;SubVirtualService relationsship
                         $vsSubVSHostingRelationship = $discoveryData.CreateRelationshipInstance("$MPElement[Name='CO.Kemp.VirtualServiceHostsSubVirtualService']$")
                         $vsSubVSHostingRelationship.source = $vsInstance
                         $vsSubVSHostingRelationship.target = $subVSInstance
                         $discoveryData.AddInstance($vsSubVSHostingRelationship)
-						#>
+						#&gt;
 
                         foreach ($rsKey in $rsHt.Keys) {
                             if ($rsHt[$rsKey].VSIndex -eq $subVS.Index ) {
@@ -755,7 +675,7 @@ foreach ($url in $urls) {
 
                                 $logString += "`n`t`t`t`tRS: $($rsKey)-$($rs.Addr)"
 
-                                # Instantiate VirtualService->SubVirtualService relationsship
+                                # Instantiate VirtualService-&gt;SubVirtualService relationsship
                                 $subVSRSContainmentRelationship = $discoveryData.CreateRelationshipInstance("$MPElement[Name='CO.Kemp.SubVirtualServiceContainsRealServer']$")
                                 $subVSRSContainmentRelationship.source = $subVSInstance
                                 $subVSRSContainmentRelationship.target = $rsInstance
@@ -784,17 +704,7 @@ if ($error.Count -gt 0) {
 }
 else {
     $scomAPI.LogScriptEvent($scriptName, $eventId, 0, "`nDiscovery ran without errors." + $logString)
-}]]></ScriptBody>
-                <Parameters>
-                  <Parameter>
-                    <Name>LoadMasterBaseUrls</Name>
-                    <Value>$Config/LoadMasterBaseUrls$</Value>
-                  </Parameter>
-                  <Parameter>
-                    <Name>Debug</Name>
-                    <Value>$Config/Debug$</Value>
-                  </Parameter>
-                  <!--                  <Parameter>
+}</ScriptBody><Parameters><Parameter><Name>LoadMasterBaseUrls</Name><Value>$Config/LoadMasterBaseUrls$</Value></Parameter><Parameter><Name>Debug</Name><Value>$Config/Debug$</Value></Parameter><!--                  <Parameter>
                     <Name>kempUser</Name>
                     <Value>$RunAs[Name='CO.Kemp.KempRunasProfile']/UserName$</Value>
                   </Parameter>
@@ -809,10 +719,7 @@ else {
                   <Parameter>
                     <Name>targetId</Name>
                     <Value>$Target/Id$</Value>
-                  </Parameter>-->
-                </Parameters>
-                <TimeoutSeconds>300</TimeoutSeconds>
-              </ProbeAction>
+                  </Parameter>--></Parameters><TimeoutSeconds>300</TimeoutSeconds></ProbeAction>
             </MemberModules>
             <Composition>
               <Node ID="Script" />
@@ -822,20 +729,15 @@ else {
         <OutputType>System!System.Discovery.Data</OutputType>
         <InputType>System!System.BaseData</InputType>
       </ProbeActionModuleType>
-      <ProbeActionModuleType ID="CO.Kemp.StatusMonitoring.ScriptProbe" Accessibility="Internal">
+      <ProbeActionModuleType ID="CO.Kemp.StatusMonitoring.ScriptProbe" Accessibility="Internal" Batching="false" PassThrough="false">
         <Configuration>
           <IncludeSchemaTypes>
             <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
-          </IncludeSchemaTypes>
-          <xsd:element name="Parameters" type="NamedParametersType" minOccurs="0" maxOccurs="1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-          <xsd:element name="TimeoutSeconds" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-        </Configuration>
-        <ModuleImplementation>
+          </IncludeSchemaTypes><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Parameters" type="NamedParametersType" minOccurs="0" maxOccurs="1" /><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TimeoutSeconds" type="xsd:integer" /></Configuration>
+        <ModuleImplementation Isolation="Any">
           <Composite>
             <MemberModules>
-              <ProbeAction ID="Script" TypeID="Windows!Microsoft.Windows.PowerShellPropertyBagProbe">
-                <ScriptName>Get-KempStatus.ps1</ScriptName>
-                <ScriptBody><![CDATA[$Error.Clear() # Fresh start!
+              <ProbeAction ID="Script" TypeID="Windows!Microsoft.Windows.PowerShellPropertyBagProbe"><ScriptName>Get-KempStatus.ps1</ScriptName><ScriptBody>$Error.Clear() # Fresh start!
 $scriptName = "Get-KempStatus.ps1"
 $eventId = 18003
 $isDebugging = $false
@@ -1137,7 +1039,7 @@ class Kemp {
             $Arr += "$Key=$($Parameters[$Key])"
         }
 
-        $ParamStr = [string]::Join("&", $Arr)
+        $ParamStr = [string]::Join("&amp;", $Arr)
         if ($ParamStr.Length -gt 0) {
             $Url = "$($Url)?$($ParamStr)"
         }
@@ -1363,10 +1265,7 @@ if ($error.Count -gt 0) {
 }
 else {
     $scomAPI.LogScriptEvent($scriptName, $eventId, 0, "`nProbe ran without errors." + $logString)
-}]]></ScriptBody>
-                <Parameters></Parameters>
-                <TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds>
-              </ProbeAction>
+}</ScriptBody><Parameters></Parameters><TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds></ProbeAction>
             </MemberModules>
             <Composition>
               <Node ID="Script" />
@@ -1380,23 +1279,14 @@ else {
     <MonitorTypes>
       <UnitMonitorType ID="CO.Kemp.StatusMonitor.ThreeStateMonitorType" Accessibility="Public">
         <MonitorTypeStates>
-          <MonitorTypeState ID="Healthy" />
-          <MonitorTypeState ID="Warning" />
-          <MonitorTypeState ID="Error" />
+          <MonitorTypeState ID="Healthy" NoDetection="false" />
+          <MonitorTypeState ID="Warning" NoDetection="false" />
+          <MonitorTypeState ID="Error" NoDetection="false" />
         </MonitorTypeStates>
         <Configuration>
           <IncludeSchemaTypes>
             <SchemaType>System!System.ExpressionEvaluatorSchema</SchemaType>
-          </IncludeSchemaTypes>
-          <xsd:element name="Identifier" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-          <xsd:element name="Type" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-          <xsd:element name="IntervalSeconds" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-          <xsd:element name="SyncTime" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-          <xsd:element name="TimeoutSeconds" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-          <xsd:element name="ErrorExpression" type="ExpressionType" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-          <xsd:element name="WarningExpression" type="ExpressionType" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-          <xsd:element name="HealthyExpression" type="ExpressionType" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-        </Configuration>
+          </IncludeSchemaTypes><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Identifier" type="xsd:string" /><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Type" type="xsd:string" /><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="IntervalSeconds" type="xsd:integer" /><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SyncTime" type="xsd:string" /><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TimeoutSeconds" type="xsd:integer" /><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ErrorExpression" type="ExpressionType" /><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="WarningExpression" type="ExpressionType" /><xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="HealthyExpression" type="ExpressionType" /></Configuration>
         <OverrideableParameters>
           <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int" />
           <OverrideableParameter ID="TimeoutSeconds" Selector="$Config/TimeoutSeconds$" ParameterType="int" />
@@ -1404,22 +1294,10 @@ else {
         </OverrideableParameters>
         <MonitorImplementation>
           <MemberModules>
-            <DataSource ID="ScriptDS" TypeID="CO.Kemp.StatusMonitoring.TimedDataSource">
-              <Identifier>$Config/Identifier$</Identifier>
-              <Type>$Config/Type$</Type>
-              <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
-              <SyncTime>$Config/SyncTime$</SyncTime>
-              <TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds>
-            </DataSource>
-            <ConditionDetection ID="ErrorFilter" TypeID="System!System.ExpressionFilter">
-              <Expression>$Config/ErrorExpression$</Expression>
-            </ConditionDetection>
-            <ConditionDetection ID="WarningFilter" TypeID="System!System.ExpressionFilter">
-              <Expression>$Config/WarningExpression$</Expression>
-            </ConditionDetection>
-            <ConditionDetection ID="HealthyFilter" TypeID="System!System.ExpressionFilter">
-              <Expression>$Config/HealthyExpression$</Expression>
-            </ConditionDetection>
+            <DataSource ID="ScriptDS" TypeID="CO.Kemp.StatusMonitoring.TimedDataSource"><Identifier>$Config/Identifier$</Identifier><Type>$Config/Type$</Type><IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds><SyncTime>$Config/SyncTime$</SyncTime><TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds></DataSource>
+            <ConditionDetection ID="ErrorFilter" TypeID="System!System.ExpressionFilter"><Expression>$Config/ErrorExpression$</Expression></ConditionDetection>
+            <ConditionDetection ID="WarningFilter" TypeID="System!System.ExpressionFilter"><Expression>$Config/WarningExpression$</Expression></ConditionDetection>
+            <ConditionDetection ID="HealthyFilter" TypeID="System!System.ExpressionFilter"><Expression>$Config/HealthyExpression$</Expression></ConditionDetection>
           </MemberModules>
           <RegularDetections>
             <RegularDetection MonitorTypeStateID="Healthy">
@@ -1444,7 +1322,7 @@ else {
   </TypeDefinitions>
   <Monitoring>
     <Discoveries>
-      <Discovery ID="CO.Kemp.InfraDiscovery.Discovery" Target="CO.Kemp.ResourcePool" Enabled="false" Remotable="true">
+      <Discovery ID="CO.Kemp.InfraDiscovery.Discovery" Enabled="false" Target="CO.Kemp.ResourcePool" ConfirmDelivery="false" Remotable="true" Priority="Normal">
         <Category>Discovery</Category>
         <DiscoveryTypes>
           <DiscoveryClass TypeID="CO.Kemp.LoadMaster" />
@@ -1457,293 +1335,158 @@ else {
           <DiscoveryRelationship TypeID="CO.Kemp.SubVirtualServiceContainsRealServer" />
           <DiscoveryRelationship TypeID="CO.Kemp.LoadMasterDAContainsLoadMaster" />
         </DiscoveryTypes>
-        <DataSource ID="DiscoveryDS" TypeID="CO.Kemp.InfraDiscovery.ScriptDataSource">
-          <LoadMasterBaseUrls>https://loadmaster.url</LoadMasterBaseUrls>
-          <Debug>false</Debug>
-          <IntervalSeconds>14400</IntervalSeconds>
-          <TimeoutSeconds>120</TimeoutSeconds>
-        </DataSource>
+        <DataSource ID="DiscoveryDS" TypeID="CO.Kemp.InfraDiscovery.ScriptDataSource"><LoadMasterBaseUrls>https://loadmaster.url</LoadMasterBaseUrls><Debug>false</Debug><IntervalSeconds>14400</IntervalSeconds><TimeoutSeconds>120</TimeoutSeconds></DataSource>
       </Discovery>
-      <Discovery ID="CO.Kemp.LoadMaster.Discovery.ManagedByPool" Target="CO.Kemp.ResourcePool" Enabled="true" Remotable="true" Priority="Normal">
+      <Discovery ID="CO.Kemp.LoadMaster.Discovery.ManagedByPool" Enabled="true" Target="CO.Kemp.ResourcePool" ConfirmDelivery="false" Remotable="true" Priority="Normal">
         <Category>Discovery</Category>
         <DiscoveryTypes>
           <DiscoveryRelationship TypeID="SC!Microsoft.SystemCenter.ManagementActionPointShouldManageEntity" />
         </DiscoveryTypes>
-        <DataSource ID="DS" TypeID="SC!Microsoft.SystemCenter.GroupPopulator">
-          <RuleId>$MPElement$</RuleId>
-          <GroupInstanceId>$Target/Id$</GroupInstanceId>
-          <MembershipRules>
-            <MembershipRule>
-              <MonitoringClass>$MPElement[Name="CO.Kemp.LoadMaster"]$</MonitoringClass>
-              <RelationshipClass>$MPElement[Name="SC!Microsoft.SystemCenter.ManagementActionPointShouldManageEntity"]$</RelationshipClass>
-            </MembershipRule>
-          </MembershipRules>
-        </DataSource>
+        <DataSource ID="DS" TypeID="SC!Microsoft.SystemCenter.GroupPopulator"><RuleId>$MPElement$</RuleId><GroupInstanceId>$Target/Id$</GroupInstanceId><MembershipRules><MembershipRule><MonitoringClass>$MPElement[Name="CO.Kemp.LoadMaster"]$</MonitoringClass><RelationshipClass>$MPElement[Name="SC!Microsoft.SystemCenter.ManagementActionPointShouldManageEntity"]$</RelationshipClass></MembershipRule></MembershipRules></DataSource>
       </Discovery>
-      <Discovery ID="CO.Kemp.VirtualService.Discovery.ManagedByPool" Target="CO.Kemp.ResourcePool" Enabled="false" Remotable="true" Priority="Normal">
+      <Discovery ID="CO.Kemp.VirtualService.Discovery.ManagedByPool" Enabled="false" Target="CO.Kemp.ResourcePool" ConfirmDelivery="false" Remotable="true" Priority="Normal">
         <Category>Discovery</Category>
         <DiscoveryTypes>
           <DiscoveryRelationship TypeID="SC!Microsoft.SystemCenter.ManagementActionPointShouldManageEntity" />
         </DiscoveryTypes>
-        <DataSource ID="DS" TypeID="SC!Microsoft.SystemCenter.GroupPopulator">
-          <RuleId>$MPElement$</RuleId>
-          <GroupInstanceId>$Target/Id$</GroupInstanceId>
-          <MembershipRules>
-            <MembershipRule>
-              <MonitoringClass>$MPElement[Name="CO.Kemp.VirtualService"]$</MonitoringClass>
-              <RelationshipClass>$MPElement[Name="SC!Microsoft.SystemCenter.ManagementActionPointShouldManageEntity"]$</RelationshipClass>
-            </MembershipRule>
-          </MembershipRules>
-        </DataSource>
+        <DataSource ID="DS" TypeID="SC!Microsoft.SystemCenter.GroupPopulator"><RuleId>$MPElement$</RuleId><GroupInstanceId>$Target/Id$</GroupInstanceId><MembershipRules><MembershipRule><MonitoringClass>$MPElement[Name="CO.Kemp.VirtualService"]$</MonitoringClass><RelationshipClass>$MPElement[Name="SC!Microsoft.SystemCenter.ManagementActionPointShouldManageEntity"]$</RelationshipClass></MembershipRule></MembershipRules></DataSource>
       </Discovery>
     </Discoveries>
     <Rules>
-      <Rule ID="CO.Kemp.LoadMaster.VSTotals_PktsPerSec.Collection" Target="CO.Kemp.LoadMaster" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
+      <Rule ID="CO.Kemp.LoadMaster.VSTotals_PktsPerSec.Collection" Enabled="true" Target="CO.Kemp.LoadMaster" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
         <Category>PerformanceCollection</Category>
         <DataSources>
-          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource">
-            <Identifier>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</Identifier>
-            <Type>lm</Type>
-            <IntervalSeconds>300</IntervalSeconds>
-            <ObjectName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</ObjectName>
-            <CounterName>VSTotals_PktsPerSec</CounterName>
-            <InstanceName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</InstanceName>
-            <Value>$Data/Property[@Name='VSTotals_PktsPerSec']$</Value>
-          </DataSource>
+          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource"><Identifier>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</Identifier><Type>lm</Type><IntervalSeconds>300</IntervalSeconds><ObjectName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</ObjectName><CounterName>VSTotals_PktsPerSec</CounterName><InstanceName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</InstanceName><Value>$Data/Property[@Name='VSTotals_PktsPerSec']$</Value></DataSource>
         </DataSources>
         <WriteActions>
           <WriteAction ID="CollectToDB" TypeID="SC!Microsoft.SystemCenter.CollectPerformanceData" />
           <WriteAction ID="CollectToDW" TypeID="MSDL!Microsoft.SystemCenter.DataWarehouse.PublishPerformanceData" />
         </WriteActions>
       </Rule>
-      <Rule ID="CO.Kemp.VSConnsPerSecCollection" Target="CO.Kemp.VirtualService" Enabled="false" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
+      <Rule ID="CO.Kemp.VSConnsPerSecCollection" Enabled="false" Target="CO.Kemp.VirtualService" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
         <Category>PerformanceCollection</Category>
         <DataSources>
-          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource">
-            <Identifier>$Target/Property[Type='CO.Kemp.VirtualService']/VSIndex$</Identifier>
-            <Type>vs</Type>
-            <IntervalSeconds>300</IntervalSeconds>
-            <ObjectName>$Target/Property[Type='CO.Kemp.VirtualService']/NickName$</ObjectName>
-            <CounterName>ConnsPerSec</CounterName>
-            <InstanceName>$Target/Property[Type='CO.Kemp.VirtualService']/NickName$</InstanceName>
-            <Value>$Data/Property[@Name='ConnsPerSec']$</Value>
-          </DataSource>
+          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource"><Identifier>$Target/Property[Type='CO.Kemp.VirtualService']/VSIndex$</Identifier><Type>vs</Type><IntervalSeconds>300</IntervalSeconds><ObjectName>$Target/Property[Type='CO.Kemp.VirtualService']/NickName$</ObjectName><CounterName>ConnsPerSec</CounterName><InstanceName>$Target/Property[Type='CO.Kemp.VirtualService']/NickName$</InstanceName><Value>$Data/Property[@Name='ConnsPerSec']$</Value></DataSource>
         </DataSources>
         <WriteActions>
           <WriteAction ID="CollectToDB" TypeID="SC!Microsoft.SystemCenter.CollectPerformanceData" />
           <WriteAction ID="CollectToDW" TypeID="MSDL!Microsoft.SystemCenter.DataWarehouse.PublishPerformanceData" />
         </WriteActions>
       </Rule>
-      <Rule ID="CO.Kemp.VirtualService.ConnectionsPerSec.Collection" Target="CO.Kemp.VirtualService" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
+      <Rule ID="CO.Kemp.VirtualService.ConnectionsPerSec.Collection" Enabled="true" Target="CO.Kemp.VirtualService" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
         <Category>PerformanceCollection</Category>
         <DataSources>
-          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource">
-            <Identifier>$Target/Property[Type='CO.Kemp.VirtualService']/VSIndex$</Identifier>
-            <Type>vs</Type>
-            <IntervalSeconds>300</IntervalSeconds>
-            <ObjectName>$Target/Property[Type='CO.Kemp.VirtualService']/NickName$</ObjectName>
-            <CounterName>ConnsPerSec</CounterName>
-            <InstanceName>$Target/Property[Type='CO.Kemp.VirtualService']/NickName$</InstanceName>
-            <Value>$Data/Property[@Name='ConnsPerSec']$</Value>
-          </DataSource>
+          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource"><Identifier>$Target/Property[Type='CO.Kemp.VirtualService']/VSIndex$</Identifier><Type>vs</Type><IntervalSeconds>300</IntervalSeconds><ObjectName>$Target/Property[Type='CO.Kemp.VirtualService']/NickName$</ObjectName><CounterName>ConnsPerSec</CounterName><InstanceName>$Target/Property[Type='CO.Kemp.VirtualService']/NickName$</InstanceName><Value>$Data/Property[@Name='ConnsPerSec']$</Value></DataSource>
         </DataSources>
         <WriteActions>
           <WriteAction ID="CollectToDB" TypeID="SC!Microsoft.SystemCenter.CollectPerformanceData" />
           <WriteAction ID="CollectToDW" TypeID="MSDL!Microsoft.SystemCenter.DataWarehouse.PublishPerformanceData" />
         </WriteActions>
       </Rule>
-      <Rule ID="CO.Kemp.SubVirtualService.ActiveConnections.Collection" Target="CO.Kemp.SubVirtualService" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
+      <Rule ID="CO.Kemp.SubVirtualService.ActiveConnections.Collection" Enabled="true" Target="CO.Kemp.SubVirtualService" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
         <Category>PerformanceCollection</Category>
         <DataSources>
-          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource">
-            <Identifier>$Target/Property[Type='CO.Kemp.SubVirtualService']/VSIndex$</Identifier>
-            <Type>SubVS</Type>
-            <IntervalSeconds>300</IntervalSeconds>
-            <ObjectName>$Target/Property[Type='CO.Kemp.SubVirtualService']/NickName$</ObjectName>
-            <CounterName>ActiveConns</CounterName>
-            <InstanceName>$Target/Property[Type='CO.Kemp.SubVirtualService']/NickName$</InstanceName>
-            <Value>$Data/Property[@Name='ActiveConns']$</Value>
-          </DataSource>
+          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource"><Identifier>$Target/Property[Type='CO.Kemp.SubVirtualService']/VSIndex$</Identifier><Type>SubVS</Type><IntervalSeconds>300</IntervalSeconds><ObjectName>$Target/Property[Type='CO.Kemp.SubVirtualService']/NickName$</ObjectName><CounterName>ActiveConns</CounterName><InstanceName>$Target/Property[Type='CO.Kemp.SubVirtualService']/NickName$</InstanceName><Value>$Data/Property[@Name='ActiveConns']$</Value></DataSource>
         </DataSources>
         <WriteActions>
           <WriteAction ID="CollectToDB" TypeID="SC!Microsoft.SystemCenter.CollectPerformanceData" />
           <WriteAction ID="CollectToDW" TypeID="MSDL!Microsoft.SystemCenter.DataWarehouse.PublishPerformanceData" />
         </WriteActions>
       </Rule>
-      <Rule ID="CO.Kemp.VirtualService.ActiveConnections.Collection" Target="CO.Kemp.VirtualService" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
+      <Rule ID="CO.Kemp.VirtualService.ActiveConnections.Collection" Enabled="true" Target="CO.Kemp.VirtualService" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
         <Category>PerformanceCollection</Category>
         <DataSources>
-          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource">
-            <Identifier>$Target/Property[Type='CO.Kemp.VirtualService']/VSIndex$</Identifier>
-            <Type>vs</Type>
-            <IntervalSeconds>300</IntervalSeconds>
-            <ObjectName>$Target/Property[Type='CO.Kemp.VirtualService']/NickName$</ObjectName>
-            <CounterName>ActiveConns</CounterName>
-            <InstanceName>$Target/Property[Type='CO.Kemp.VirtualService']/NickName$</InstanceName>
-            <Value>$Data/Property[@Name='ActiveConns']$</Value>
-          </DataSource>
+          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource"><Identifier>$Target/Property[Type='CO.Kemp.VirtualService']/VSIndex$</Identifier><Type>vs</Type><IntervalSeconds>300</IntervalSeconds><ObjectName>$Target/Property[Type='CO.Kemp.VirtualService']/NickName$</ObjectName><CounterName>ActiveConns</CounterName><InstanceName>$Target/Property[Type='CO.Kemp.VirtualService']/NickName$</InstanceName><Value>$Data/Property[@Name='ActiveConns']$</Value></DataSource>
         </DataSources>
         <WriteActions>
           <WriteAction ID="CollectToDB" TypeID="SC!Microsoft.SystemCenter.CollectPerformanceData" />
           <WriteAction ID="CollectToDW" TypeID="MSDL!Microsoft.SystemCenter.DataWarehouse.PublishPerformanceData" />
         </WriteActions>
       </Rule>
-      <Rule ID="CO.Kemp.SubVirtualService.ConnectionPerSec.Collection" Target="CO.Kemp.SubVirtualService" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
+      <Rule ID="CO.Kemp.SubVirtualService.ConnectionPerSec.Collection" Enabled="true" Target="CO.Kemp.SubVirtualService" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
         <Category>PerformanceCollection</Category>
         <DataSources>
-          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource">
-            <Identifier>$Target/Property[Type='CO.Kemp.SubVirtualService']/VSIndex$</Identifier>
-            <Type>SubVS</Type>
-            <IntervalSeconds>300</IntervalSeconds>
-            <ObjectName>$Target/Property[Type='CO.Kemp.SubVirtualService']/NickName$</ObjectName>
-            <CounterName>ConnsPerSec</CounterName>
-            <InstanceName>$Target/Property[Type='CO.Kemp.SubVirtualService']/NickName$</InstanceName>
-            <Value>$Data/Property[@Name='ConnsPerSec']$</Value>
-          </DataSource>
+          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource"><Identifier>$Target/Property[Type='CO.Kemp.SubVirtualService']/VSIndex$</Identifier><Type>SubVS</Type><IntervalSeconds>300</IntervalSeconds><ObjectName>$Target/Property[Type='CO.Kemp.SubVirtualService']/NickName$</ObjectName><CounterName>ConnsPerSec</CounterName><InstanceName>$Target/Property[Type='CO.Kemp.SubVirtualService']/NickName$</InstanceName><Value>$Data/Property[@Name='ConnsPerSec']$</Value></DataSource>
         </DataSources>
         <WriteActions>
           <WriteAction ID="CollectToDB" TypeID="SC!Microsoft.SystemCenter.CollectPerformanceData" />
           <WriteAction ID="CollectToDW" TypeID="MSDL!Microsoft.SystemCenter.DataWarehouse.PublishPerformanceData" />
         </WriteActions>
       </Rule>
-      <Rule ID="CO.Kemp.LoadMaster.CPUSystemTotal.Collection" Target="CO.Kemp.LoadMaster" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
+      <Rule ID="CO.Kemp.LoadMaster.CPUSystemTotal.Collection" Enabled="true" Target="CO.Kemp.LoadMaster" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
         <Category>PerformanceCollection</Category>
         <DataSources>
-          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource">
-            <Identifier>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</Identifier>
-            <Type>lm</Type>
-            <IntervalSeconds>300</IntervalSeconds>
-            <ObjectName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</ObjectName>
-            <CounterName>CPU_SystemTotal</CounterName>
-            <InstanceName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</InstanceName>
-            <Value>$Data/Property[@Name='CPU_SystemTotal']$</Value>
-          </DataSource>
+          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource"><Identifier>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</Identifier><Type>lm</Type><IntervalSeconds>300</IntervalSeconds><ObjectName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</ObjectName><CounterName>CPU_SystemTotal</CounterName><InstanceName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</InstanceName><Value>$Data/Property[@Name='CPU_SystemTotal']$</Value></DataSource>
         </DataSources>
         <WriteActions>
           <WriteAction ID="CollectToDB" TypeID="SC!Microsoft.SystemCenter.CollectPerformanceData" />
           <WriteAction ID="CollectToDW" TypeID="MSDL!Microsoft.SystemCenter.DataWarehouse.PublishPerformanceData" />
         </WriteActions>
       </Rule>
-      <Rule ID="CO.Kemp.LoadMaster.MEMUsed.Collection" Target="CO.Kemp.LoadMaster" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
+      <Rule ID="CO.Kemp.LoadMaster.MEMUsed.Collection" Enabled="true" Target="CO.Kemp.LoadMaster" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
         <Category>PerformanceCollection</Category>
         <DataSources>
-          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource">
-            <Identifier>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</Identifier>
-            <Type>lm</Type>
-            <IntervalSeconds>300</IntervalSeconds>
-            <ObjectName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</ObjectName>
-            <CounterName>MEM_used</CounterName>
-            <InstanceName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</InstanceName>
-            <Value>$Data/Property[@Name='MEM_used']$</Value>
-          </DataSource>
+          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource"><Identifier>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</Identifier><Type>lm</Type><IntervalSeconds>300</IntervalSeconds><ObjectName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</ObjectName><CounterName>MEM_used</CounterName><InstanceName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</InstanceName><Value>$Data/Property[@Name='MEM_used']$</Value></DataSource>
         </DataSources>
         <WriteActions>
           <WriteAction ID="CollectToDB" TypeID="SC!Microsoft.SystemCenter.CollectPerformanceData" />
           <WriteAction ID="CollectToDW" TypeID="MSDL!Microsoft.SystemCenter.DataWarehouse.PublishPerformanceData" />
         </WriteActions>
       </Rule>
-      <Rule ID="CO.Kemp.LoadMaster.MEMUsedPct.Collection" Target="CO.Kemp.LoadMaster" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
+      <Rule ID="CO.Kemp.LoadMaster.MEMUsedPct.Collection" Enabled="true" Target="CO.Kemp.LoadMaster" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
         <Category>PerformanceCollection</Category>
         <DataSources>
-          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource">
-            <Identifier>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</Identifier>
-            <Type>lm</Type>
-            <IntervalSeconds>300</IntervalSeconds>
-            <ObjectName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</ObjectName>
-            <CounterName>MEM_usedPct</CounterName>
-            <InstanceName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</InstanceName>
-            <Value>$Data/Property[@Name='MEM_usedPct']$</Value>
-          </DataSource>
+          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource"><Identifier>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</Identifier><Type>lm</Type><IntervalSeconds>300</IntervalSeconds><ObjectName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</ObjectName><CounterName>MEM_usedPct</CounterName><InstanceName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</InstanceName><Value>$Data/Property[@Name='MEM_usedPct']$</Value></DataSource>
         </DataSources>
         <WriteActions>
           <WriteAction ID="CollectToDB" TypeID="SC!Microsoft.SystemCenter.CollectPerformanceData" />
           <WriteAction ID="CollectToDW" TypeID="MSDL!Microsoft.SystemCenter.DataWarehouse.PublishPerformanceData" />
         </WriteActions>
       </Rule>
-      <Rule ID="CO.Kemp.LoadMaster.MEMFree.Collection" Target="CO.Kemp.LoadMaster" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
+      <Rule ID="CO.Kemp.LoadMaster.MEMFree.Collection" Enabled="true" Target="CO.Kemp.LoadMaster" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
         <Category>PerformanceCollection</Category>
         <DataSources>
-          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource">
-            <Identifier>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</Identifier>
-            <Type>lm</Type>
-            <IntervalSeconds>300</IntervalSeconds>
-            <ObjectName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</ObjectName>
-            <CounterName>MEM_free</CounterName>
-            <InstanceName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</InstanceName>
-            <Value>$Data/Property[@Name='MEM_free']$</Value>
-          </DataSource>
+          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource"><Identifier>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</Identifier><Type>lm</Type><IntervalSeconds>300</IntervalSeconds><ObjectName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</ObjectName><CounterName>MEM_free</CounterName><InstanceName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</InstanceName><Value>$Data/Property[@Name='MEM_free']$</Value></DataSource>
         </DataSources>
         <WriteActions>
           <WriteAction ID="CollectToDB" TypeID="SC!Microsoft.SystemCenter.CollectPerformanceData" />
           <WriteAction ID="CollectToDW" TypeID="MSDL!Microsoft.SystemCenter.DataWarehouse.PublishPerformanceData" />
         </WriteActions>
       </Rule>
-      <Rule ID="CO.Kemp.LoadMaster.MEMFreePct.Collection" Target="CO.Kemp.LoadMaster" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
+      <Rule ID="CO.Kemp.LoadMaster.MEMFreePct.Collection" Enabled="true" Target="CO.Kemp.LoadMaster" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
         <Category>PerformanceCollection</Category>
         <DataSources>
-          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource">
-            <Identifier>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</Identifier>
-            <Type>lm</Type>
-            <IntervalSeconds>300</IntervalSeconds>
-            <ObjectName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</ObjectName>
-            <CounterName>MEM_freePct</CounterName>
-            <InstanceName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</InstanceName>
-            <Value>$Data/Property[@Name='MEM_freePct']$</Value>
-          </DataSource>
+          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource"><Identifier>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</Identifier><Type>lm</Type><IntervalSeconds>300</IntervalSeconds><ObjectName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</ObjectName><CounterName>MEM_freePct</CounterName><InstanceName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</InstanceName><Value>$Data/Property[@Name='MEM_freePct']$</Value></DataSource>
         </DataSources>
         <WriteActions>
           <WriteAction ID="CollectToDB" TypeID="SC!Microsoft.SystemCenter.CollectPerformanceData" />
           <WriteAction ID="CollectToDW" TypeID="MSDL!Microsoft.SystemCenter.DataWarehouse.PublishPerformanceData" />
         </WriteActions>
       </Rule>
-      <Rule ID="CO.Kemp.LoadMaster.VSTotals_ConnsPerSec.Collection" Target="CO.Kemp.LoadMaster" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
+      <Rule ID="CO.Kemp.LoadMaster.VSTotals_ConnsPerSec.Collection" Enabled="true" Target="CO.Kemp.LoadMaster" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
         <Category>PerformanceCollection</Category>
         <DataSources>
-          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource">
-            <Identifier>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</Identifier>
-            <Type>lm</Type>
-            <IntervalSeconds>300</IntervalSeconds>
-            <ObjectName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</ObjectName>
-            <CounterName>VSTotals_ConnsPerSec</CounterName>
-            <InstanceName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</InstanceName>
-            <Value>$Data/Property[@Name='VSTotals_ConnsPerSec']$</Value>
-          </DataSource>
+          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource"><Identifier>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</Identifier><Type>lm</Type><IntervalSeconds>300</IntervalSeconds><ObjectName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</ObjectName><CounterName>VSTotals_ConnsPerSec</CounterName><InstanceName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</InstanceName><Value>$Data/Property[@Name='VSTotals_ConnsPerSec']$</Value></DataSource>
         </DataSources>
         <WriteActions>
           <WriteAction ID="CollectToDB" TypeID="SC!Microsoft.SystemCenter.CollectPerformanceData" />
           <WriteAction ID="CollectToDW" TypeID="MSDL!Microsoft.SystemCenter.DataWarehouse.PublishPerformanceData" />
         </WriteActions>
       </Rule>
-      <Rule ID="CO.Kemp.LoadMaster.VSTotals_BitsPerSec.Collection" Target="CO.Kemp.LoadMaster" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
+      <Rule ID="CO.Kemp.LoadMaster.VSTotals_BitsPerSec.Collection" Enabled="true" Target="CO.Kemp.LoadMaster" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
         <Category>PerformanceCollection</Category>
         <DataSources>
-          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource">
-            <Identifier>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</Identifier>
-            <Type>lm</Type>
-            <IntervalSeconds>300</IntervalSeconds>
-            <ObjectName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</ObjectName>
-            <CounterName>VSTotals_BitsPerSec</CounterName>
-            <InstanceName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</InstanceName>
-            <Value>$Data/Property[@Name='VSTotals_BitsPerSec']$</Value>
-          </DataSource>
+          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource"><Identifier>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</Identifier><Type>lm</Type><IntervalSeconds>300</IntervalSeconds><ObjectName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</ObjectName><CounterName>VSTotals_BitsPerSec</CounterName><InstanceName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</InstanceName><Value>$Data/Property[@Name='VSTotals_BitsPerSec']$</Value></DataSource>
         </DataSources>
         <WriteActions>
           <WriteAction ID="CollectToDB" TypeID="SC!Microsoft.SystemCenter.CollectPerformanceData" />
           <WriteAction ID="CollectToDW" TypeID="MSDL!Microsoft.SystemCenter.DataWarehouse.PublishPerformanceData" />
         </WriteActions>
       </Rule>
-      <Rule ID="CO.Kemp.LoadMaster.VSTotals_BytesPerSec.Collection" Target="CO.Kemp.LoadMaster" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
+      <Rule ID="CO.Kemp.LoadMaster.VSTotals_BytesPerSec.Collection" Enabled="true" Target="CO.Kemp.LoadMaster" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
         <Category>PerformanceCollection</Category>
         <DataSources>
-          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource">
-            <Identifier>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</Identifier>
-            <Type>lm</Type>
-            <IntervalSeconds>300</IntervalSeconds>
-            <ObjectName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</ObjectName>
-            <CounterName>VSTotals_BytesPerSec</CounterName>
-            <InstanceName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</InstanceName>
-            <Value>$Data/Property[@Name='VSTotals_BytesPerSec']$</Value>
-          </DataSource>
+          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource"><Identifier>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</Identifier><Type>lm</Type><IntervalSeconds>300</IntervalSeconds><ObjectName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</ObjectName><CounterName>VSTotals_BytesPerSec</CounterName><InstanceName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</InstanceName><Value>$Data/Property[@Name='VSTotals_BytesPerSec']$</Value></DataSource>
         </DataSources>
         <WriteActions>
           <WriteAction ID="CollectToDB" TypeID="SC!Microsoft.SystemCenter.CollectPerformanceData" />
@@ -1765,61 +1508,7 @@ else {
           <OperationalState ID="Warning" MonitorTypeStateID="Warning" HealthState="Warning" />
           <OperationalState ID="Error" MonitorTypeStateID="Error" HealthState="Error" />
         </OperationalStates>
-        <Configuration>
-          <Identifier>$Target/Property[Type='CO.Kemp.SubVirtualService']/VSIndex$</Identifier>
-          <Type>SubVS</Type>
-          <IntervalSeconds>600</IntervalSeconds>
-          <SyncTime />
-          <TimeoutSeconds>120</TimeoutSeconds>
-          <ErrorExpression>
-            <And>
-              <Expression>
-                <SimpleExpression>
-                  <ValueExpression>
-                    <XPathQuery Type="String">Property[@Name='enabled']</XPathQuery>
-                  </ValueExpression>
-                  <Operator>Equal</Operator>
-                  <ValueExpression>
-                    <Value Type="String">Y</Value>
-                  </ValueExpression>
-                </SimpleExpression>
-              </Expression>
-              <Expression>
-                <SimpleExpression>
-                  <ValueExpression>
-                    <XPathQuery Type="String">Property[@Name='status']</XPathQuery>
-                  </ValueExpression>
-                  <Operator>Equal</Operator>
-                  <ValueExpression>
-                    <Value Type="String">Down</Value>
-                  </ValueExpression>
-                </SimpleExpression>
-              </Expression>
-            </And>
-          </ErrorExpression>
-          <WarningExpression>
-            <SimpleExpression>
-              <ValueExpression>
-                <XPathQuery Type="String">Property[@Name='enabled']</XPathQuery>
-              </ValueExpression>
-              <Operator>Equal</Operator>
-              <ValueExpression>
-                <Value Type="String">N</Value>
-              </ValueExpression>
-            </SimpleExpression>
-          </WarningExpression>
-          <HealthyExpression>
-            <SimpleExpression>
-              <ValueExpression>
-                <XPathQuery Type="String">Property[@Name='status']</XPathQuery>
-              </ValueExpression>
-              <Operator>Equal</Operator>
-              <ValueExpression>
-                <Value Type="String">Up</Value>
-              </ValueExpression>
-            </SimpleExpression>
-          </HealthyExpression>
-        </Configuration>
+        <Configuration><Identifier>$Target/Property[Type='CO.Kemp.SubVirtualService']/VSIndex$</Identifier><Type>SubVS</Type><IntervalSeconds>600</IntervalSeconds><SyncTime /><TimeoutSeconds>120</TimeoutSeconds><ErrorExpression><And><Expression><SimpleExpression><ValueExpression><XPathQuery Type="String">Property[@Name='enabled']</XPathQuery></ValueExpression><Operator>Equal</Operator><ValueExpression><Value Type="String">Y</Value></ValueExpression></SimpleExpression></Expression><Expression><SimpleExpression><ValueExpression><XPathQuery Type="String">Property[@Name='status']</XPathQuery></ValueExpression><Operator>Equal</Operator><ValueExpression><Value Type="String">Down</Value></ValueExpression></SimpleExpression></Expression></And></ErrorExpression><WarningExpression><SimpleExpression><ValueExpression><XPathQuery Type="String">Property[@Name='enabled']</XPathQuery></ValueExpression><Operator>Equal</Operator><ValueExpression><Value Type="String">N</Value></ValueExpression></SimpleExpression></WarningExpression><HealthyExpression><SimpleExpression><ValueExpression><XPathQuery Type="String">Property[@Name='status']</XPathQuery></ValueExpression><Operator>Equal</Operator><ValueExpression><Value Type="String">Up</Value></ValueExpression></SimpleExpression></HealthyExpression></Configuration>
       </UnitMonitor>
       <UnitMonitor ID="CO.Kemp.RealServerStatusMonitor" Accessibility="Public" Enabled="true" Target="CO.Kemp.RealServer" ParentMonitorID="Health!System.Health.AvailabilityState" Remotable="true" Priority="Normal" TypeID="CO.Kemp.StatusMonitor.ThreeStateMonitorType" ConfirmDelivery="false">
         <Category>AvailabilityHealth</Category>
@@ -1834,61 +1523,7 @@ else {
           <OperationalState ID="Warning" MonitorTypeStateID="Warning" HealthState="Warning" />
           <OperationalState ID="Error" MonitorTypeStateID="Error" HealthState="Error" />
         </OperationalStates>
-        <Configuration>
-          <Identifier>$Target/Property[Type='CO.Kemp.RealServer']/RsIndex$</Identifier>
-          <Type>rs</Type>
-          <IntervalSeconds>600</IntervalSeconds>
-          <SyncTime />
-          <TimeoutSeconds>120</TimeoutSeconds>
-          <ErrorExpression>
-            <And>
-              <Expression>
-                <SimpleExpression>
-                  <ValueExpression>
-                    <XPathQuery Type="String">Property[@Name='enabled']</XPathQuery>
-                  </ValueExpression>
-                  <Operator>Equal</Operator>
-                  <ValueExpression>
-                    <Value Type="String">Y</Value>
-                  </ValueExpression>
-                </SimpleExpression>
-              </Expression>
-              <Expression>
-                <SimpleExpression>
-                  <ValueExpression>
-                    <XPathQuery Type="String">Property[@Name='status']</XPathQuery>
-                  </ValueExpression>
-                  <Operator>Equal</Operator>
-                  <ValueExpression>
-                    <Value Type="String">Down</Value>
-                  </ValueExpression>
-                </SimpleExpression>
-              </Expression>
-            </And>
-          </ErrorExpression>
-          <WarningExpression>
-            <SimpleExpression>
-              <ValueExpression>
-                <XPathQuery Type="String">Property[@Name='enabled']</XPathQuery>
-              </ValueExpression>
-              <Operator>Equal</Operator>
-              <ValueExpression>
-                <Value Type="String">N</Value>
-              </ValueExpression>
-            </SimpleExpression>
-          </WarningExpression>
-          <HealthyExpression>
-            <SimpleExpression>
-              <ValueExpression>
-                <XPathQuery Type="String">Property[@Name='status']</XPathQuery>
-              </ValueExpression>
-              <Operator>Equal</Operator>
-              <ValueExpression>
-                <Value Type="String">Up</Value>
-              </ValueExpression>
-            </SimpleExpression>
-          </HealthyExpression>
-        </Configuration>
+        <Configuration><Identifier>$Target/Property[Type='CO.Kemp.RealServer']/RsIndex$</Identifier><Type>rs</Type><IntervalSeconds>600</IntervalSeconds><SyncTime /><TimeoutSeconds>120</TimeoutSeconds><ErrorExpression><And><Expression><SimpleExpression><ValueExpression><XPathQuery Type="String">Property[@Name='enabled']</XPathQuery></ValueExpression><Operator>Equal</Operator><ValueExpression><Value Type="String">Y</Value></ValueExpression></SimpleExpression></Expression><Expression><SimpleExpression><ValueExpression><XPathQuery Type="String">Property[@Name='status']</XPathQuery></ValueExpression><Operator>Equal</Operator><ValueExpression><Value Type="String">Down</Value></ValueExpression></SimpleExpression></Expression></And></ErrorExpression><WarningExpression><SimpleExpression><ValueExpression><XPathQuery Type="String">Property[@Name='enabled']</XPathQuery></ValueExpression><Operator>Equal</Operator><ValueExpression><Value Type="String">N</Value></ValueExpression></SimpleExpression></WarningExpression><HealthyExpression><SimpleExpression><ValueExpression><XPathQuery Type="String">Property[@Name='status']</XPathQuery></ValueExpression><Operator>Equal</Operator><ValueExpression><Value Type="String">Up</Value></ValueExpression></SimpleExpression></HealthyExpression></Configuration>
       </UnitMonitor>
       <UnitMonitor ID="CO.Kemp.VirtualServiceStatusMonitor" Accessibility="Public" Enabled="true" Target="CO.Kemp.VirtualService" ParentMonitorID="Health!System.Health.AvailabilityState" Remotable="true" Priority="Normal" TypeID="CO.Kemp.StatusMonitor.ThreeStateMonitorType" ConfirmDelivery="false">
         <Category>AvailabilityHealth</Category>
@@ -1903,61 +1538,7 @@ else {
           <OperationalState ID="Warning" MonitorTypeStateID="Warning" HealthState="Warning" />
           <OperationalState ID="Error" MonitorTypeStateID="Error" HealthState="Error" />
         </OperationalStates>
-        <Configuration>
-          <Identifier>$Target/Property[Type='CO.Kemp.VirtualService']/VSIndex$</Identifier>
-          <Type>vs</Type>
-          <IntervalSeconds>600</IntervalSeconds>
-          <SyncTime />
-          <TimeoutSeconds>120</TimeoutSeconds>
-          <ErrorExpression>
-            <And>
-              <Expression>
-                <SimpleExpression>
-                  <ValueExpression>
-                    <XPathQuery Type="String">Property[@Name='enabled']</XPathQuery>
-                  </ValueExpression>
-                  <Operator>Equal</Operator>
-                  <ValueExpression>
-                    <Value Type="String">Y</Value>
-                  </ValueExpression>
-                </SimpleExpression>
-              </Expression>
-              <Expression>
-                <SimpleExpression>
-                  <ValueExpression>
-                    <XPathQuery Type="String">Property[@Name='status']</XPathQuery>
-                  </ValueExpression>
-                  <Operator>Equal</Operator>
-                  <ValueExpression>
-                    <Value Type="String">Down</Value>
-                  </ValueExpression>
-                </SimpleExpression>
-              </Expression>
-            </And>
-          </ErrorExpression>
-          <WarningExpression>
-            <SimpleExpression>
-              <ValueExpression>
-                <XPathQuery Type="String">Property[@Name='enabled']</XPathQuery>
-              </ValueExpression>
-              <Operator>Equal</Operator>
-              <ValueExpression>
-                <Value Type="String">N</Value>
-              </ValueExpression>
-            </SimpleExpression>
-          </WarningExpression>
-          <HealthyExpression>
-            <SimpleExpression>
-              <ValueExpression>
-                <XPathQuery Type="String">Property[@Name='status']</XPathQuery>
-              </ValueExpression>
-              <Operator>Equal</Operator>
-              <ValueExpression>
-                <Value Type="String">Up</Value>
-              </ValueExpression>
-            </SimpleExpression>
-          </HealthyExpression>
-        </Configuration>
+        <Configuration><Identifier>$Target/Property[Type='CO.Kemp.VirtualService']/VSIndex$</Identifier><Type>vs</Type><IntervalSeconds>600</IntervalSeconds><SyncTime /><TimeoutSeconds>120</TimeoutSeconds><ErrorExpression><And><Expression><SimpleExpression><ValueExpression><XPathQuery Type="String">Property[@Name='enabled']</XPathQuery></ValueExpression><Operator>Equal</Operator><ValueExpression><Value Type="String">Y</Value></ValueExpression></SimpleExpression></Expression><Expression><SimpleExpression><ValueExpression><XPathQuery Type="String">Property[@Name='status']</XPathQuery></ValueExpression><Operator>Equal</Operator><ValueExpression><Value Type="String">Down</Value></ValueExpression></SimpleExpression></Expression></And></ErrorExpression><WarningExpression><SimpleExpression><ValueExpression><XPathQuery Type="String">Property[@Name='enabled']</XPathQuery></ValueExpression><Operator>Equal</Operator><ValueExpression><Value Type="String">N</Value></ValueExpression></SimpleExpression></WarningExpression><HealthyExpression><SimpleExpression><ValueExpression><XPathQuery Type="String">Property[@Name='status']</XPathQuery></ValueExpression><Operator>Equal</Operator><ValueExpression><Value Type="String">Up</Value></ValueExpression></SimpleExpression></HealthyExpression></Configuration>
       </UnitMonitor>
     </Monitors>
   </Monitoring>
@@ -2356,7 +1937,6 @@ This might effect the availability of it's VirtualService, depending on the numb
           <Description>Used to manage credentials for monitoring KEMP clusters/devices. No real support for multiple credentials in this version, create a read-only user with the same username/password in each cluster for now...</Description>
         </DisplayString>
       </DisplayStrings>
-      <KnowledgeArticles></KnowledgeArticles>
     </LanguagePack>
   </LanguagePacks>
 </ManagementPack>
