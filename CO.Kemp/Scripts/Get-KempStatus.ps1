@@ -405,6 +405,21 @@ foreach ($url in $LoadMasterBaseUrls) {
         # got data in allHT, which means here's a LoadMaster returned.
 
         [string] $identifier = $allHt.managementhost
+
+        if (($allHt.ha1hostname.Length -gt 0) -and ($allHt.hostname -eq $allHt.ha1hostname)) {
+            # ha1 is active
+            $ha1Active = 1
+            $ha2Active = 0
+        } elseif (($allHt.ha2hostname.Length -gt 0) -and ($allHt.hostname -eq $allHt.ha2hostname)) {
+            # ha2 is active
+            $ha1Active = 0
+            $ha2Active = 1
+        } else {
+            # not a cluster
+            $ha1Active = 0
+            $ha2Active = 0
+        }
+
         # Create LM Propertybag
         $pbHTArray.Add(@{
             "objecttype" = "lm"
@@ -420,7 +435,11 @@ foreach ($url in $LoadMasterBaseUrls) {
             "VSTotals_BytesPerSec" = $lmStatsHt.VSTotals_BytesPerSec
             "MEM_freePct" = $lmStatsHt.MEM_freePct
             "MEM_free" = $lmStatsHt.MEM_free
+            "HA1_IsActive" = $ha1Active
+            "HA2_IsActive" = $ha2Active
+            "HA_Mode" = $allHt.hamode
         }) | Out-Null
+
 
         $logString += "`n`tLM: $identifier"
 
