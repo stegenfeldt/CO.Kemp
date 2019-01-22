@@ -5,6 +5,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Gathering performance data from API
+- CO.Kemp.PerformanceDataMapper.DataSource
+- CO.Kemp.VSConnsPerSecCollection (disabled for compatibility, should be removed when possible)
+- CO.Kemp.VirtualService.ConnectionsPerSec.Collection
+- CO.Kemp.VirtualService.ActiveConnections.Collection
+- CO.Kemp.SubVirtualService.ConnectionPerSec.Collection
+- CO.Kemp.SubVirtualService.ActiveConnections.Collection
+- CO.Kemp.LoadMaster.VSTotals_PktsPerSec.Collection
+- CO.Kemp.LoadMaster.CPUSystemTotal.Collection
+- CO.Kemp.LoadMaster.MEMUsed.Collection
+- CO.Kemp.LoadMaster.MEMUsedPct.Collection
+- CO.Kemp.LoadMaster.MEMFree.Collection
+- CO.Kemp.LoadMaster.MEMFreePct.Collection
+- CO.Kemp.LoadMaster.VSTotals_ConnsPerSec.Collection
+- CO.Kemp.LoadMaster.VSTotals_BitsPerSec.Collection
+- CO.Kemp.LoadMaster.VSTotals_BytesPerSec.Collection
+
 ### Changed
 - Updated changelog with [v1.0.0-alpha]
 
@@ -12,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Issue #10, RS Containment discovery is now connecting the correct RS to VS/SubVS.
 - Spellcheck on VS/SubVS displaystrings
 - VSAddress on VS/SubVS is now populated
+- VS/SubVS Nickname property displaystring
 
 ## [v1.0.0-alpha]
 ### Added

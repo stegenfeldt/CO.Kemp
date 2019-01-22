@@ -17,6 +17,20 @@ $knownDebugHosts = @(
 if ($host.Name -in $knownDebugHosts) {
     # script is running in a known debug environment, set debug values
     $tempDir = "$env:TEMP\CO.Kemp"
+    
+	# needed a slightly more secure way to debug these scripts
+	# using serialized credentials (encrypted) from file
+	# if file is missing, script will ask for credentials, and save them for later use
+	$credPath = $tempDir + "\kempcreds.xml"
+    if (Test-Path -Path $credPath) {
+        $credentials = Import-Clixml -Path $credPath
+    } else {
+        $credentials = Get-Credential -Message "Enter Kemp Login"
+        Export-Clixml -Path $credPath -InputObject $credentials
+    }
+    
+    [string] $kempUser = $credentials.UserName
+    [string] $kempPass = $credentials.GetNetworkCredential().Password
     $LoadMasterBaseUrls = @("https://avmk01.westeurope.cloudapp.azure.com:8443/") #my free tier azure appliance, perfect for development, may be offline
     if (!(Test-Path -Path $tempDir)) {New-Item -Path $tempDir -ItemType Directory}
     $isDebugging = $true
@@ -37,6 +51,7 @@ class Kemp {
     # Kemp Base URL (LoadMaster admin adress?)
     [string] $AdminAdress
     [System.Net.NetworkCredential] $Credential
+    [System.Xml.XmlElement] $StatsXml
 
     [hashtable] GetClusters() {
         $clResult = $this.QueryKempApi("access/listclusters", @{}).Response.Success.Data
@@ -61,14 +76,78 @@ class Kemp {
                 $all[$allXml.Name] = $all[$allXml.Name] + "," + $allXml.InnerText
             }
             else {
-                $all.Add($allXml.Name, $allXml.InnerText)
+                $all.Add($allXml.Name, $allXml.InnerText) | Out-Null
             }
         }
         if ($all.Count -gt 1) {
             #got results, add proper management property
-            $all.Add("managementhost", $(([System.Uri]$this.AdminAdress).Host))
+            $all.Add("managementhost", $(([System.Uri]$this.AdminAdress).Host)) | Out-Null
         }
         return $all
+    }
+
+    [System.Xml.XmlElement] LoadStatsXML() {
+        # using this member to avoid multiple API-checks when data is already loaded
+        if ($null -eq $this.StatsXml) {
+            #TODO: Need better StatsXML check
+            $statsResult = $this.QueryKempApi("access/stats", @{}).Response.Success.Data
+            #$statsResult.InnerXml | Out-File -FilePath ".\stats.xml" -Force
+            $this.StatsXml = $statsResult
+        }
+        return $this.StatsXml
+    }
+
+    [hashtable] GetVSStats() {
+        $xml = $this.LoadStatsXML()
+        
+        $vsStats = @{}
+        foreach ($vsStatsXml in $xml.SelectNodes("//Vs")) {
+            $properties = @{}
+            foreach ($propertyXml in $vsStatsXML.ChildNodes) {
+                $properties[$propertyXML.Name] = $propertyXml.InnerText
+            }
+            $vsStats[$vsStatsXml.Index] = $properties
+        }
+        if ($vsStats.Count -gt 1) {
+            #got results, add proper management property
+            $vsStats.Add("managementhost", $(([System.Uri]$this.AdminAdress).Host)) | Out-Null
+        }
+        return $vsStats
+    }
+
+    [hashtable] GetRSStats() {
+        $xml = $this.LoadStatsXML()
+        
+        $rsStats = @{}
+        foreach ($rsStatsXml in $xml.SelectNodes("//Rs")) {
+            $properties = @{}
+            foreach ($propertyXml in $rsStatsXML.ChildNodes) {
+                $properties[$propertyXML.Name] = $propertyXml.InnerText
+            }
+            $rsStats[$rsStatsXml.RsIndex] = $properties
+        }
+        if ($rsStats.Count -gt 1) {
+            #got results, add proper management property
+            $rsStats.Add("managementhost", $(([System.Uri]$this.AdminAdress).Host)) | Out-Null
+        }
+        return $rsStats
+    }
+
+    [hashtable] GetLMStats() {
+        $xml = $this.LoadStatsXML()
+        
+        $lmStats = @{}
+        $lmStats["managementhost"] = $(([System.Uri]$this.AdminAdress).Host)
+        $lmStats["CPU_SystemTotal"] = $xml.CPU.total.System
+        $lmStats["MEM_used"] = $xml.Memory.memused
+        $lmStats["MEM_usedPct"] = $xml.Memory.percentmemused
+        $lmStats["MEM_free"] = $xml.Memory.memfree
+        $lmStats["MEM_freePct"] = $xml.Memory.percentmemfree
+        $lmStats["VSTotals_ConnsPerSec"] = $xml.VStotals.ConnsPerSec
+        $lmStats["VSTotals_BitsPerSec"] = $xml.VStotals.BitsPerSec
+        $lmStats["VSTotals_BytesPerSec"] = $xml.VStotals.BytesPerSec
+        $lmStats["VSTotals_PktsPerSec"] = $xml.VStotals.PktsPerSec
+        return $lmStats
     }
 
     [hashtable] ListFQDNs() {
@@ -82,7 +161,7 @@ class Kemp {
                 $all[$allXml.Name] = $all[$allXml.Name] + "," + $allXml.InnerText
             }
             else {
-                $all.Add($allXml.Name, $allXml.InnerText)
+                $all.Add($allXml.Name, $allXml.InnerText) | Out-Null
             }
         }
 
@@ -100,7 +179,7 @@ class Kemp {
                 $all[$allXml.Name] = $all[$allXml.Name] + "," + $allXml.InnerText
             }
             else {
-                $all.Add($allXml.Name, $allXml.InnerText)
+                $all.Add($allXml.Name, $allXml.InnerText) | Out-Null
             }
         }
 
@@ -125,7 +204,7 @@ class Kemp {
                     "Enable"   = $rsXml.Enable
                     "Critical" = $rsXml.Critical
                 }
-            )
+            ) | Out-Null
         }
 
         return $rs
@@ -196,7 +275,7 @@ class Kemp {
                     "Cache"                = $vsXml.Cache
                     "ClientCert"           = $vsXml.ClientCert
                 }
-            )
+            ) | Out-Null
         }
         return ($vs)
     }
@@ -299,6 +378,9 @@ foreach ($url in $LoadMasterBaseUrls) {
         $vsHt = $kemp.GetVirtualServices() #VirtualService (incl. SubVS) information
         $rsHt = $kemp.GetRealServers() # RealServer information
         $allHt = $kemp.GetAll() # This is where you get LoadMaster node information
+        $vsStatsHt = $kemp.GetVSStats()
+        $rsStatsHt = $kemp.GetRSStats()
+        $lmStatsHt = $kemp.GetLMStats()
         # Cluster API is not accessible unless you're admin, we'll deal with that later
         #$clHt = $kemp.GetClusters() 
     }
@@ -312,6 +394,9 @@ foreach ($url in $LoadMasterBaseUrls) {
         $vsHt | ConvertTo-Json | Out-File -FilePath "$tempDir\vs.json"
         $rsHt | ConvertTo-Json | Out-File -FilePath "$tempDir\rs.json"
         $allHt | ConvertTo-Json | Out-File -FilePath "$tempDir\all.json"
+        $vsStatsHt | ConvertTo-Json | Out-File -FilePath "$tempDir\vsStatsHt.json"
+        $rsStatsHt | ConvertTo-Json | Out-File -FilePath "$tempDir\rsStatsHt.json"
+        $lmStatsHt | ConvertTo-Json | Out-File -FilePath "$tempDir\lmStatsHt.json"
         # Cluster API is not accessible unless you're admin, we'll deal with that later
         #$clHt | ConvertTo-Json | Out-File -FilePath "$($env:TEMP)\cl.json"
     }
@@ -326,6 +411,15 @@ foreach ($url in $LoadMasterBaseUrls) {
             "hostname"   = $allHt.managementhost
             "responds"   = "yes"
             "identifier" = $identifier.Trim()
+            "CPU_SystemTotal" = $lmStatsHt.CPU_SystemTotal
+            "VSTotals_PktsPerSec" = $lmStatsHt.VSTotals_PktsPerSec
+            "MEM_used" = $lmStatsHt.MEM_used
+            "VSTotals_BitsPerSec" = $lmStatsHt.VSTotals_BitsPerSec
+            "MEM_usedPct" = $lmStatsHt.MEM_usedPct
+            "VSTotals_ConnsPerSec" = $lmStatsHt.VSTotals_ConnsPerSec
+            "VSTotals_BytesPerSec" = $lmStatsHt.VSTotals_BytesPerSec
+            "MEM_freePct" = $lmStatsHt.MEM_freePct
+            "MEM_free" = $lmStatsHt.MEM_free
         }) | Out-Null
 
         $logString += "`n`tLM: $identifier"
@@ -335,6 +429,7 @@ foreach ($url in $LoadMasterBaseUrls) {
             if ($vsHt[$vsKey].MasterVSID -eq "0") {
                 # regular VS
                 $vs = $vsHt[$vsKey]
+                $vsStats = $vsStatsHt[$vsKey]
 
                 $identifier = "$($allHt.managementhost)-vs$($vsKey)"
                 # send VS propertybag
@@ -345,6 +440,8 @@ foreach ($url in $LoadMasterBaseUrls) {
                     "enabled"    = $vs.Enable
                     "status"     = $vs.Status
                     "identifier" = $identifier.Trim()
+                    "ActiveConns" = $vsStats.ActiveConns
+                    "ConnsPerSec" = $vsStats.ConnsPerSec
                 }) | Out-Null
 
                 $logString += "`n`t`tVS: $identifier`tenabled=$($vs.Enable),Status=$($vs.Status)"
@@ -353,6 +450,7 @@ foreach ($url in $LoadMasterBaseUrls) {
 					if ($rsHt[$rsKey].VSIndex -eq $vs.Index ) {
 						# RS (in VS)
                         $rs = $rsHt[$rsKey]
+                        $rsStats = $rsStatsHt[$rsKey]
                         $identifier = "$($allHt.managementhost)-vs$($vsKey)-rs$($rsKey)" #using this as a composite key property
 
                         # prepare RS propertybag info
@@ -361,8 +459,10 @@ foreach ($url in $LoadMasterBaseUrls) {
 							"index" = $identifier
 							"status" = $rs.Status
 							"enabled" = $rs.Enable
-							"identifier" = $identifier
-						})
+                            "identifier" = $identifier
+                            "ActiveConns" = $rsStats.ActiveConns
+                            "ConnsPerSec" = $rsStats.ConnsPerSec
+						}) | Out-Null
 
                         $logString += "`n`t`t`tRS: $($rsKey)-$($rs.Addr)"
                     }
@@ -373,6 +473,7 @@ foreach ($url in $LoadMasterBaseUrls) {
                     if ($vsHt[$subVSKey].MasterVSID -eq $vs.Index) {
                         # SubVS
                         $subVS = $vsHt[$subVSKey]
+                        $subVsStats = $vsStatsHt[$subVSKey]
 
                         $identifier = "$($allHt.managementhost)-vs$($vsKey)-subvs$($subVSKey)"
                         # send VS propertybag
@@ -383,6 +484,8 @@ foreach ($url in $LoadMasterBaseUrls) {
                             "enabled"    = $subVS.Enable
                             "status"     = $subVS.Status
                             "identifier" = $identifier.Trim()
+                            "ActiveConns" = $subVsStats.ActiveConns
+                            "ConnsPerSec" = $subVsStats.ConnsPerSec
                         }) | Out-Null
 
                         $logString += "`n`t`t`tSubVS: $identifier`tenabled=$($subVS.Enable),status=$($subVS.Status)"
@@ -392,6 +495,7 @@ foreach ($url in $LoadMasterBaseUrls) {
                             if ($rsHt[$rsKey].VSIndex -eq $subVS.Index ) {
                                 # RS (in SubVS)
                                 $rs = $rsHt[$rsKey]
+                                $rsStats = $rsStatsHt[$rsKey]
                                 $identifier = "$($allHt.managementhost)-vs$($vsKey)-subvs$($subVSKey)-rs$($rsKey)" #using this as a composite key property
 
 								# prepare RS propertybag info
@@ -400,8 +504,10 @@ foreach ($url in $LoadMasterBaseUrls) {
 									"index" = $identifier
 									"status" = $rs.Status
 									"enabled" = $rs.Enable
-									"identifier" = $identifier
-								})
+                                    "identifier" = $identifier
+                                    "ActiveConns" = $rsStats.ActiveConns
+                                    "ConnsPerSec" = $rsStats.ConnsPerSec
+								}) | Out-Null
                                 $logString += "`n`t`t`t`tRS: $($rsKey)-$($rs.Addr)"
                             }
                         }
