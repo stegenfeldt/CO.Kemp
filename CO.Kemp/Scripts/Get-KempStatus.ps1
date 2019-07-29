@@ -1,4 +1,8 @@
-﻿$Error.Clear() # Fresh start!
+﻿$existingModules = @((Get-Module).Name) # Save existing modules
+$existingVars = @((Get-Variable -Scope Global).Name) # Save existing variables, put first in any script
+######################################
+
+$Error.Clear() # Fresh start!
 $scriptName = "Get-KempStatus.ps1"
 $eventId = 18003
 $isDebugging = $false
@@ -402,9 +406,24 @@ foreach ($url in $LoadMasterBaseUrls) {
     }
 
     if ($allHt.Count -gt 0) {
-        # got data in allHT, which means here's a LoadMaster returned.
+        # got data in allHT, which means there's a LoadMaster returned.
 
         [string] $identifier = $allHt.managementhost
+
+        if (($allHt.ha1hostname.Length -gt 0) -and ($allHt.hostname -eq $allHt.ha1hostname)) {
+            # ha1 is active
+            $ha1Active = 1
+            $ha2Active = 0
+        } elseif (($allHt.ha2hostname.Length -gt 0) -and ($allHt.hostname -eq $allHt.ha2hostname)) {
+            # ha2 is active
+            $ha1Active = 0
+            $ha2Active = 1
+        } else {
+            # not a cluster
+            $ha1Active = 0
+            $ha2Active = 0
+        }
+
         # Create LM Propertybag
         $pbHTArray.Add(@{
             "objecttype" = "lm"
@@ -420,7 +439,11 @@ foreach ($url in $LoadMasterBaseUrls) {
             "VSTotals_BytesPerSec" = $lmStatsHt.VSTotals_BytesPerSec
             "MEM_freePct" = $lmStatsHt.MEM_freePct
             "MEM_free" = $lmStatsHt.MEM_free
+            "HA1_IsActive" = $ha1Active
+            "HA2_IsActive" = $ha2Active
+            "HA_Mode" = $allHt.hamode
         }) | Out-Null
+
 
         $logString += "`n`tLM: $identifier"
 
@@ -516,6 +539,16 @@ foreach ($url in $LoadMasterBaseUrls) {
                 }
             }
         }
+    } else {
+        # No response from LoadMaster
+        # Create LM Propertybag for a "no response" error
+        $identifier = $(([System.Uri]$url).Host)
+
+        $pbHTArray.Add(@{
+            "objecttype" = "lm"
+            "responds"   = "no"
+            "identifier" = $identifier.Trim()
+        }) | Out-Null
     }
 }
 
@@ -526,4 +559,21 @@ if ($error.Count -gt 0) {
 }
 else {
     $scomAPI.LogScriptEvent($scriptName, $eventId, 0, "`nProbe ran without errors." + $logString)
+}
+
+######################################
+# put last in any script
+foreach ($newVar in (Get-Variable -Exclude $existingVars -Scope Global).Name){
+    if ($newVar -ne "existingVars") {
+        $obj = Get-Variable -Name $newVar -ValueOnly
+        if ("Close" -in (Get-Member -InputObject $obj).Name) {$obj.Close}
+        if ("Dispose" -in (Get-Member -InputObject $obj).Name) {$obj.Dispose}
+        $obj = $null
+        Remove-Variable -Name "obj" -Force -Scope Global
+        Remove-Variable -Name $newVar -Force -Scope Global
+    }
+}
+Get-SCOMManagementGroupConnection | Remove-SCOMManagementGroupConnection
+foreach ($newModule in ((Get-Module).Name | Where-Object{$_ -notin $existingModules})){
+    Remove-Module -Name $newModule
 }

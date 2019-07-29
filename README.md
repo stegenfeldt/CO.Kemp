@@ -1,6 +1,6 @@
 # CO.Kemp
 
-A System Center Operations Manager management pack for monitoring KEMP Loadmaster nodes and clusters.  
+A System Center Operations Manager 2016+ management pack for monitoring KEMP Loadmaster nodes and clusters.  
 Uses the KEMP REST-API instead of SNMP.
 
 ## How to contribute

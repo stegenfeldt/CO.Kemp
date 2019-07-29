@@ -1,4 +1,5 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
@@ -6,9 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- CO.Kemp.LoadMaster.APIAvailability.Monitor
+- CO.Kemp.LoadMaster.HA1IsActive.Collection
+- CO.Kemp.LoadMaster.HA2IsActive.Collection
+
+### Changed
+- Added variable/module cleanup routines to scripts to minimize memory leakage
 
 ## [v1.0.0-alpha.2]
+
 ### Added
+
 - Gathering performance data from API
 - CO.Kemp.PerformanceDataMapper.DataSource
 - CO.Kemp.VSConnsPerSecCollection (disabled for compatibility, should be removed when possible)
@@ -27,16 +38,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CO.Kemp.LoadMaster.VSTotals_BytesPerSec.Collection
 
 ### Changed
+
 - Updated changelog with [v1.0.0-alpha]
 
 ### Fixed
+
 - Issue #10, RS Containment discovery is now connecting the correct RS to VS/SubVS.
 - Spellcheck on VS/SubVS displaystrings
 - VSAddress on VS/SubVS is now populated
 - VS/SubVS Nickname property displaystring
 
 ## [v1.0.0-alpha]
+
 ### Added
+
 - Changelog
 - Classes (LM, VS, SubVS, RS)
 - Relationships
