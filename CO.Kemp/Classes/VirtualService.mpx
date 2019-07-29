@@ -1,0 +1,95 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+        <ClassType ID="CO.Kemp.VirtualService" Base="System!System.ApplicationComponent" Accessibility="Public" Abstract="false" Hosted="true" Singleton="false">
+          <Property ID="VSIndex" Key="true" Type="string"/>
+          <Property ID="VSAddress" Key="false" Type="string"/>
+          <Property ID="MasterVSID" Key="false" Type="int"/>
+          <Property ID="Port" Key="false" Type="string"/>
+          <Property ID="NickName" Key="false" Type="string"/>
+          <Property ID="Protocol" Key="false" Type="string"/>
+          <Property ID="QoS" Key="false" Type="int"/>
+          <Property ID="Layer" Key="false" Type="int"/>
+          <Property ID="VStype" Key="false" Type="string"/>
+          <Property ID="NumberOfRSs" Key="false" Type="int"/>
+          <Property ID="CheckType" Key="false" Type="string"/>
+          <Property ID="CheckUrl" Key="false" Type="string"/>
+          <Property ID="ForceL7" Key="false" Type="string"/>
+          <Property ID="ForceL4" Key="false" Type="string"/>
+          <Property ID="AlertThreshold" Key="false" Type="int"/>
+        </ClassType>
+      </ClassTypes>
+    </EntityTypes>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="CO.Kemp.VirtualService">
+          <Name>KEMP VirtualService</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.VirtualService" SubElementID="VSIndex">
+          <Name>VS Index</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.VirtualService" SubElementID="NickName">
+          <Name>VS Nickname</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.VirtualService" SubElementID="VSAddress">
+          <Name>VS Address</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.VirtualService" SubElementID="MasterVSID">
+          <Name>Master VSID</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.VirtualService" SubElementID="Port">
+          <Name>Port</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.VirtualService" SubElementID="Protocol">
+          <Name>Protocol</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.VirtualService" SubElementID="QoS">
+          <Name>QoS</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.VirtualService" SubElementID="Layer">
+          <Name>Layer</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.VirtualService" SubElementID="VStype">
+          <Name>VS Type</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.VirtualService" SubElementID="NumberOfRSs">
+          <Name>Number Of RealServers</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.VirtualService" SubElementID="CheckType">
+          <Name>CheckType</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.VirtualService" SubElementID="CheckUrl">
+          <Name>CheckUrl</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.VirtualService" SubElementID="ForceL7">
+          <Name>ForceL7</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.VirtualService" SubElementID="ForceL4">
+          <Name>Force L4</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.VirtualService" SubElementID="AlertThreshold">
+          <Name>Alert Threshold</Name>
+          <Description></Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

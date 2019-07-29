@@ -1,0 +1,324 @@
+<TemplateGroup>
+  <Instances>
+    <Instance ID="Instancecd5f621320914d88ac4f5fd6abec0843" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.PerformanceCollectionRule" Version="1.0.0.0">
+      <PerformanceCollectionRuleConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <Id>LoadMaster.VSTotals_PktsPerSec.Collection</Id>
+        <DisplayName>KEMP LM VSTOTALS Packets per Sec Collection Rule</DisplayName>
+        <Description>Collects VSTOTALS Packets per Second for KEMP LoadMaster</Description>
+        <Category>PerformanceCollection</Category>
+        <ConfirmDelivery>false</ConfirmDelivery>
+        <Target>CO.Kemp.LoadMaster</Target>
+        <Enabled>true</Enabled>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <DiscardLevel>100</DiscardLevel>
+        <ConditionDetectionId>CD</ConditionDetectionId>
+        <DataSourceId>DS</DataSourceId>
+        <DataSourceConfig>&lt;Identifier&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/Identifier&gt;&lt;Type&gt;lm&lt;/Type&gt;&lt;IntervalSeconds&gt;300&lt;/IntervalSeconds&gt;&lt;ObjectName&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/ObjectName&gt;&lt;CounterName&gt;VSTotals_PktsPerSec&lt;/CounterName&gt;&lt;InstanceName&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/InstanceName&gt;&lt;Value&gt;$Data/Property[@Name='VSTotals_PktsPerSec']$&lt;/Value&gt;</DataSourceConfig>
+        <DataSourceType>CO.Kemp.PerformanceDataMapper.DataSource</DataSourceType>
+        <CollectToDB>true</CollectToDB>
+        <CollectToDW>true</CollectToDW>
+      </PerformanceCollectionRuleConfig>
+    </Instance>
+    <Instance ID="Instance995c244ebe764703b1d424171d5a1c74" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.PerformanceCollectionRule" Version="1.0.0.0">
+      <PerformanceCollectionRuleConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <Id>VSConnsPerSecCollection</Id>
+        <DisplayName>(DEPRECATED) KEMP VS Connection per Second Collection Rule</DisplayName>
+        <Description>Collects Connection per Second for KEMP Virtual Service</Description>
+        <Category>PerformanceCollection</Category>
+        <ConfirmDelivery>false</ConfirmDelivery>
+        <Target>CO.Kemp.VirtualService</Target>
+        <Enabled>false</Enabled>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <DiscardLevel>100</DiscardLevel>
+        <ConditionDetectionId>CD</ConditionDetectionId>
+        <DataSourceId>DS</DataSourceId>
+        <DataSourceConfig>&lt;Identifier&gt;$Target/Property[Type='CO.Kemp.VirtualService']/VSIndex$&lt;/Identifier&gt;&lt;Type&gt;vs&lt;/Type&gt;&lt;IntervalSeconds&gt;300&lt;/IntervalSeconds&gt;&lt;ObjectName&gt;$Target/Property[Type='CO.Kemp.VirtualService']/NickName$&lt;/ObjectName&gt;&lt;CounterName&gt;ConnsPerSec&lt;/CounterName&gt;&lt;InstanceName&gt;$Target/Property[Type='CO.Kemp.VirtualService']/NickName$&lt;/InstanceName&gt;&lt;Value&gt;$Data/Property[@Name='ConnsPerSec']$&lt;/Value&gt;</DataSourceConfig>
+        <DataSourceType>CO.Kemp.PerformanceDataMapper.DataSource</DataSourceType>
+        <CollectToDB>true</CollectToDB>
+        <CollectToDW>true</CollectToDW>
+      </PerformanceCollectionRuleConfig>
+    </Instance>
+    <Instance ID="Instance60f35a01668a43f9a919137d8e628a66" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.PerformanceCollectionRule" Version="1.0.0.0">
+      <PerformanceCollectionRuleConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <Id>VirtualService.ConnectionsPerSec.Collection</Id>
+        <DisplayName>KEMP VS Connections per Sec Collection Rule</DisplayName>
+        <Description>Collects Connections per Second for KEMP Virtual Service</Description>
+        <Category>PerformanceCollection</Category>
+        <ConfirmDelivery>false</ConfirmDelivery>
+        <Target>CO.Kemp.VirtualService</Target>
+        <Enabled>true</Enabled>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <DiscardLevel>100</DiscardLevel>
+        <ConditionDetectionId>CD</ConditionDetectionId>
+        <DataSourceId>DS</DataSourceId>
+        <DataSourceConfig>&lt;Identifier&gt;$Target/Property[Type='CO.Kemp.VirtualService']/VSIndex$&lt;/Identifier&gt;&lt;Type&gt;vs&lt;/Type&gt;&lt;IntervalSeconds&gt;300&lt;/IntervalSeconds&gt;&lt;ObjectName&gt;$Target/Property[Type='CO.Kemp.VirtualService']/NickName$&lt;/ObjectName&gt;&lt;CounterName&gt;ConnsPerSec&lt;/CounterName&gt;&lt;InstanceName&gt;$Target/Property[Type='CO.Kemp.VirtualService']/NickName$&lt;/InstanceName&gt;&lt;Value&gt;$Data/Property[@Name='ConnsPerSec']$&lt;/Value&gt;</DataSourceConfig>
+        <DataSourceType>CO.Kemp.PerformanceDataMapper.DataSource</DataSourceType>
+        <CollectToDB>true</CollectToDB>
+        <CollectToDW>true</CollectToDW>
+      </PerformanceCollectionRuleConfig>
+    </Instance>
+    <Instance ID="Instance106b05fe5db4445196a5fc885ea431d2" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.PerformanceCollectionRule" Version="1.0.0.0">
+      <PerformanceCollectionRuleConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <Id>SubVirtualService.ActiveConnections.Collection</Id>
+        <DisplayName>KEMP SubVS Active Connections Collection Rule</DisplayName>
+        <Description>Collects Active Connections for KEMP SubVS</Description>
+        <Category>PerformanceCollection</Category>
+        <ConfirmDelivery>false</ConfirmDelivery>
+        <Target>CO.Kemp.SubVirtualService</Target>
+        <Enabled>true</Enabled>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <DiscardLevel>100</DiscardLevel>
+        <ConditionDetectionId>CD</ConditionDetectionId>
+        <DataSourceId>DS</DataSourceId>
+        <DataSourceConfig>&lt;Identifier&gt;$Target/Property[Type='CO.Kemp.SubVirtualService']/VSIndex$&lt;/Identifier&gt;&lt;Type&gt;SubVS&lt;/Type&gt;&lt;IntervalSeconds&gt;300&lt;/IntervalSeconds&gt;&lt;ObjectName&gt;$Target/Property[Type='CO.Kemp.SubVirtualService']/NickName$&lt;/ObjectName&gt;&lt;CounterName&gt;ActiveConns&lt;/CounterName&gt;&lt;InstanceName&gt;$Target/Property[Type='CO.Kemp.SubVirtualService']/NickName$&lt;/InstanceName&gt;&lt;Value&gt;$Data/Property[@Name='ActiveConns']$&lt;/Value&gt;</DataSourceConfig>
+        <DataSourceType>CO.Kemp.PerformanceDataMapper.DataSource</DataSourceType>
+        <CollectToDB>true</CollectToDB>
+        <CollectToDW>true</CollectToDW>
+      </PerformanceCollectionRuleConfig>
+    </Instance>
+    <Instance ID="Instanceff61b66bfcdb4b87b597420b0434981c" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.PerformanceCollectionRule" Version="1.0.0.0">
+      <PerformanceCollectionRuleConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <Id>VirtualService.ActiveConnections.Collection</Id>
+        <DisplayName>KEMP VS Active Connections Collection Rule</DisplayName>
+        <Description>Collects Active Connections for KEMP Virtual Service</Description>
+        <Category>PerformanceCollection</Category>
+        <ConfirmDelivery>false</ConfirmDelivery>
+        <Target>CO.Kemp.VirtualService</Target>
+        <Enabled>true</Enabled>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <DiscardLevel>100</DiscardLevel>
+        <ConditionDetectionId>CD</ConditionDetectionId>
+        <DataSourceId>DS</DataSourceId>
+        <DataSourceConfig>&lt;Identifier&gt;$Target/Property[Type='CO.Kemp.VirtualService']/VSIndex$&lt;/Identifier&gt;&lt;Type&gt;vs&lt;/Type&gt;&lt;IntervalSeconds&gt;300&lt;/IntervalSeconds&gt;&lt;ObjectName&gt;$Target/Property[Type='CO.Kemp.VirtualService']/NickName$&lt;/ObjectName&gt;&lt;CounterName&gt;ActiveConns&lt;/CounterName&gt;&lt;InstanceName&gt;$Target/Property[Type='CO.Kemp.VirtualService']/NickName$&lt;/InstanceName&gt;&lt;Value&gt;$Data/Property[@Name='ActiveConns']$&lt;/Value&gt;</DataSourceConfig>
+        <DataSourceType>CO.Kemp.PerformanceDataMapper.DataSource</DataSourceType>
+        <CollectToDB>true</CollectToDB>
+        <CollectToDW>true</CollectToDW>
+      </PerformanceCollectionRuleConfig>
+    </Instance>
+    <Instance ID="Instance24e2d273f6714d99b3aa52760d78beba" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.PerformanceCollectionRule" Version="1.0.0.0">
+      <PerformanceCollectionRuleConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <Id>SubVirtualService.ConnectionPerSec.Collection</Id>
+        <DisplayName>KEMP SubVS Connections per Second Collection Rule</DisplayName>
+        <Description>Collects Connections per Second for KEMP SubVS</Description>
+        <Category>PerformanceCollection</Category>
+        <ConfirmDelivery>false</ConfirmDelivery>
+        <Target>CO.Kemp.SubVirtualService</Target>
+        <Enabled>true</Enabled>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <DiscardLevel>100</DiscardLevel>
+        <ConditionDetectionId>CD</ConditionDetectionId>
+        <DataSourceId>DS</DataSourceId>
+        <DataSourceConfig>&lt;Identifier&gt;$Target/Property[Type='CO.Kemp.SubVirtualService']/VSIndex$&lt;/Identifier&gt;&lt;Type&gt;SubVS&lt;/Type&gt;&lt;IntervalSeconds&gt;300&lt;/IntervalSeconds&gt;&lt;ObjectName&gt;$Target/Property[Type='CO.Kemp.SubVirtualService']/NickName$&lt;/ObjectName&gt;&lt;CounterName&gt;ConnsPerSec&lt;/CounterName&gt;&lt;InstanceName&gt;$Target/Property[Type='CO.Kemp.SubVirtualService']/NickName$&lt;/InstanceName&gt;&lt;Value&gt;$Data/Property[@Name='ConnsPerSec']$&lt;/Value&gt;</DataSourceConfig>
+        <DataSourceType>CO.Kemp.PerformanceDataMapper.DataSource</DataSourceType>
+        <CollectToDB>true</CollectToDB>
+        <CollectToDW>true</CollectToDW>
+      </PerformanceCollectionRuleConfig>
+    </Instance>
+    <Instance ID="Instance36e819b03b354636a6fa2e46aa09ad6f" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.PerformanceCollectionRule" Version="1.0.0.0">
+      <PerformanceCollectionRuleConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <Id>LoadMaster.HA2IsActive.Collection</Id>
+        <DisplayName>KEMP LM HA2 IsActive Collection Rule</DisplayName>
+        <Description>Collects if HA2 is Active (1) or Inactive (0) KEMP LoadMaster</Description>
+        <Category>PerformanceCollection</Category>
+        <ConfirmDelivery>false</ConfirmDelivery>
+        <Target>CO.Kemp.LoadMaster</Target>
+        <Enabled>true</Enabled>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <DiscardLevel>100</DiscardLevel>
+        <ConditionDetectionId>CD</ConditionDetectionId>
+        <DataSourceId>DS</DataSourceId>
+        <DataSourceConfig>&lt;Identifier&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/Identifier&gt;&lt;Type&gt;lm&lt;/Type&gt;&lt;IntervalSeconds&gt;300&lt;/IntervalSeconds&gt;&lt;ObjectName&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/ObjectName&gt;&lt;CounterName&gt;HA2_IsActive&lt;/CounterName&gt;&lt;InstanceName&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/InstanceName&gt;&lt;Value&gt;$Data/Property[@Name='HA2_IsActive']$&lt;/Value&gt;</DataSourceConfig>
+        <DataSourceType>CO.Kemp.PerformanceDataMapper.DataSource</DataSourceType>
+        <CollectToDB>true</CollectToDB>
+        <CollectToDW>true</CollectToDW>
+      </PerformanceCollectionRuleConfig>
+    </Instance>
+    <Instance ID="Instance3cc70a41db2542e3bf2723255d389688" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.PerformanceCollectionRule" Version="1.0.0.0">
+      <PerformanceCollectionRuleConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <Id>LoadMaster.MEMUsed.Collection</Id>
+        <DisplayName>KEMP LM MEM Used Total Collection Rule</DisplayName>
+        <Description>Collects MEM Used for KEMP LoadMaster</Description>
+        <Category>PerformanceCollection</Category>
+        <ConfirmDelivery>false</ConfirmDelivery>
+        <Target>CO.Kemp.LoadMaster</Target>
+        <Enabled>true</Enabled>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <DiscardLevel>100</DiscardLevel>
+        <ConditionDetectionId>CD</ConditionDetectionId>
+        <DataSourceId>DS</DataSourceId>
+        <DataSourceConfig>&lt;Identifier&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/Identifier&gt;&lt;Type&gt;lm&lt;/Type&gt;&lt;IntervalSeconds&gt;300&lt;/IntervalSeconds&gt;&lt;ObjectName&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/ObjectName&gt;&lt;CounterName&gt;MEM_used&lt;/CounterName&gt;&lt;InstanceName&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/InstanceName&gt;&lt;Value&gt;$Data/Property[@Name='MEM_used']$&lt;/Value&gt;</DataSourceConfig>
+        <DataSourceType>CO.Kemp.PerformanceDataMapper.DataSource</DataSourceType>
+        <CollectToDB>true</CollectToDB>
+        <CollectToDW>true</CollectToDW>
+      </PerformanceCollectionRuleConfig>
+    </Instance>
+    <Instance ID="Instance9703903e99984c5bae10b00c310561c6" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.PerformanceCollectionRule" Version="1.0.0.0">
+      <PerformanceCollectionRuleConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <Id>LoadMaster.MEMUsedPct.Collection</Id>
+        <DisplayName>KEMP LM MEM Used % Collection Rule</DisplayName>
+        <Description>Collects MEM Used percent for KEMP LoadMaster</Description>
+        <Category>PerformanceCollection</Category>
+        <ConfirmDelivery>false</ConfirmDelivery>
+        <Target>CO.Kemp.LoadMaster</Target>
+        <Enabled>true</Enabled>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <DiscardLevel>100</DiscardLevel>
+        <ConditionDetectionId>CD</ConditionDetectionId>
+        <DataSourceId>DS</DataSourceId>
+        <DataSourceConfig>&lt;Identifier&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/Identifier&gt;&lt;Type&gt;lm&lt;/Type&gt;&lt;IntervalSeconds&gt;300&lt;/IntervalSeconds&gt;&lt;ObjectName&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/ObjectName&gt;&lt;CounterName&gt;MEM_usedPct&lt;/CounterName&gt;&lt;InstanceName&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/InstanceName&gt;&lt;Value&gt;$Data/Property[@Name='MEM_usedPct']$&lt;/Value&gt;</DataSourceConfig>
+        <DataSourceType>CO.Kemp.PerformanceDataMapper.DataSource</DataSourceType>
+        <CollectToDB>true</CollectToDB>
+        <CollectToDW>true</CollectToDW>
+      </PerformanceCollectionRuleConfig>
+    </Instance>
+    <Instance ID="Instancef26b7403106b4f51bd1bee148c56ed5d" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.PerformanceCollectionRule" Version="1.0.0.0">
+      <PerformanceCollectionRuleConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <Id>LoadMaster.MEMFree.Collection</Id>
+        <DisplayName>KEMP LM MEM Free Collection Rule</DisplayName>
+        <Description>Collects MEM Free for KEMP LoadMaster</Description>
+        <Category>PerformanceCollection</Category>
+        <ConfirmDelivery>false</ConfirmDelivery>
+        <Target>CO.Kemp.LoadMaster</Target>
+        <Enabled>true</Enabled>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <DiscardLevel>100</DiscardLevel>
+        <ConditionDetectionId>CD</ConditionDetectionId>
+        <DataSourceId>DS</DataSourceId>
+        <DataSourceConfig>&lt;Identifier&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/Identifier&gt;&lt;Type&gt;lm&lt;/Type&gt;&lt;IntervalSeconds&gt;300&lt;/IntervalSeconds&gt;&lt;ObjectName&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/ObjectName&gt;&lt;CounterName&gt;MEM_free&lt;/CounterName&gt;&lt;InstanceName&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/InstanceName&gt;&lt;Value&gt;$Data/Property[@Name='MEM_free']$&lt;/Value&gt;</DataSourceConfig>
+        <DataSourceType>CO.Kemp.PerformanceDataMapper.DataSource</DataSourceType>
+        <CollectToDB>true</CollectToDB>
+        <CollectToDW>true</CollectToDW>
+      </PerformanceCollectionRuleConfig>
+    </Instance>
+    <Instance ID="Instance67b9adb77ee145f3a2fa64342e6ff34f" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.PerformanceCollectionRule" Version="1.0.0.0">
+      <PerformanceCollectionRuleConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <Id>LoadMaster.MEMFreePct.Collection</Id>
+        <DisplayName>KEMP LM MEM Free % Collection Rule</DisplayName>
+        <Description>Collects MEM Free Percent for KEMP LoadMaster</Description>
+        <Category>PerformanceCollection</Category>
+        <ConfirmDelivery>false</ConfirmDelivery>
+        <Target>CO.Kemp.LoadMaster</Target>
+        <Enabled>true</Enabled>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <DiscardLevel>100</DiscardLevel>
+        <ConditionDetectionId>CD</ConditionDetectionId>
+        <DataSourceId>DS</DataSourceId>
+        <DataSourceConfig>&lt;Identifier&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/Identifier&gt;&lt;Type&gt;lm&lt;/Type&gt;&lt;IntervalSeconds&gt;300&lt;/IntervalSeconds&gt;&lt;ObjectName&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/ObjectName&gt;&lt;CounterName&gt;MEM_freePct&lt;/CounterName&gt;&lt;InstanceName&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/InstanceName&gt;&lt;Value&gt;$Data/Property[@Name='MEM_freePct']$&lt;/Value&gt;</DataSourceConfig>
+        <DataSourceType>CO.Kemp.PerformanceDataMapper.DataSource</DataSourceType>
+        <CollectToDB>true</CollectToDB>
+        <CollectToDW>true</CollectToDW>
+      </PerformanceCollectionRuleConfig>
+    </Instance>
+    <Instance ID="Instance672b53618caf472598ff09be074c270f" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.PerformanceCollectionRule" Version="1.0.0.0">
+      <PerformanceCollectionRuleConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <Id>LoadMaster.VSTotals_ConnsPerSec.Collection</Id>
+        <DisplayName>KEMP LM VSTotals Connections per Sec Collection Rule</DisplayName>
+        <Description>Collects VSTotals Connections per Second for KEMP LoadMaster</Description>
+        <Category>PerformanceCollection</Category>
+        <ConfirmDelivery>false</ConfirmDelivery>
+        <Target>CO.Kemp.LoadMaster</Target>
+        <Enabled>true</Enabled>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <DiscardLevel>100</DiscardLevel>
+        <ConditionDetectionId>CD</ConditionDetectionId>
+        <DataSourceId>DS</DataSourceId>
+        <DataSourceConfig>&lt;Identifier&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/Identifier&gt;&lt;Type&gt;lm&lt;/Type&gt;&lt;IntervalSeconds&gt;300&lt;/IntervalSeconds&gt;&lt;ObjectName&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/ObjectName&gt;&lt;CounterName&gt;VSTotals_ConnsPerSec&lt;/CounterName&gt;&lt;InstanceName&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/InstanceName&gt;&lt;Value&gt;$Data/Property[@Name='VSTotals_ConnsPerSec']$&lt;/Value&gt;</DataSourceConfig>
+        <DataSourceType>CO.Kemp.PerformanceDataMapper.DataSource</DataSourceType>
+        <CollectToDB>true</CollectToDB>
+        <CollectToDW>true</CollectToDW>
+      </PerformanceCollectionRuleConfig>
+    </Instance>
+    <Instance ID="Instancede5df177a67840ac9555276784ef5400" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.PerformanceCollectionRule" Version="1.0.0.0">
+      <PerformanceCollectionRuleConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <Id>LoadMaster.VSTotals_BitsPerSec.Collection</Id>
+        <DisplayName>KEMP LM VSTOTALS Bits per Sec Collection Rule</DisplayName>
+        <Description>Collects VSTOTALS Bits per Second for KEMP LoadMaster</Description>
+        <Category>PerformanceCollection</Category>
+        <ConfirmDelivery>false</ConfirmDelivery>
+        <Target>CO.Kemp.LoadMaster</Target>
+        <Enabled>true</Enabled>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <DiscardLevel>100</DiscardLevel>
+        <ConditionDetectionId>CD</ConditionDetectionId>
+        <DataSourceId>DS</DataSourceId>
+        <DataSourceConfig>&lt;Identifier&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/Identifier&gt;&lt;Type&gt;lm&lt;/Type&gt;&lt;IntervalSeconds&gt;300&lt;/IntervalSeconds&gt;&lt;ObjectName&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/ObjectName&gt;&lt;CounterName&gt;VSTotals_BitsPerSec&lt;/CounterName&gt;&lt;InstanceName&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/InstanceName&gt;&lt;Value&gt;$Data/Property[@Name='VSTotals_BitsPerSec']$&lt;/Value&gt;</DataSourceConfig>
+        <DataSourceType>CO.Kemp.PerformanceDataMapper.DataSource</DataSourceType>
+        <CollectToDB>true</CollectToDB>
+        <CollectToDW>true</CollectToDW>
+      </PerformanceCollectionRuleConfig>
+    </Instance>
+    <Instance ID="Instance7fe5e4e3d370441fa7e483acc7d9d95a" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.PerformanceCollectionRule" Version="1.0.0.0">
+      <PerformanceCollectionRuleConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <Id>LoadMaster.VSTotals_BytesPerSec.Collection</Id>
+        <DisplayName>KEMP LM VSTOTALS Bytes per Sec Collection Rule</DisplayName>
+        <Description>Collects VSTOTALS Bytes per Second for KEMP LoadMaster</Description>
+        <Category>PerformanceCollection</Category>
+        <ConfirmDelivery>false</ConfirmDelivery>
+        <Target>CO.Kemp.LoadMaster</Target>
+        <Enabled>true</Enabled>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <DiscardLevel>100</DiscardLevel>
+        <ConditionDetectionId>CD</ConditionDetectionId>
+        <DataSourceId>DS</DataSourceId>
+        <DataSourceConfig>&lt;Identifier&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/Identifier&gt;&lt;Type&gt;lm&lt;/Type&gt;&lt;IntervalSeconds&gt;300&lt;/IntervalSeconds&gt;&lt;ObjectName&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/ObjectName&gt;&lt;CounterName&gt;VSTotals_BytesPerSec&lt;/CounterName&gt;&lt;InstanceName&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/InstanceName&gt;&lt;Value&gt;$Data/Property[@Name='VSTotals_BytesPerSec']$&lt;/Value&gt;</DataSourceConfig>
+        <DataSourceType>CO.Kemp.PerformanceDataMapper.DataSource</DataSourceType>
+        <CollectToDB>true</CollectToDB>
+        <CollectToDW>true</CollectToDW>
+      </PerformanceCollectionRuleConfig>
+    </Instance>
+    <Instance ID="Instancead799b3179e9454b925564416d472b71" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.PerformanceCollectionRule" Version="1.0.0.0">
+      <PerformanceCollectionRuleConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <Id>LoadMaster.CPUSystemTotal.Collection</Id>
+        <DisplayName>KEMP LM CPU System Total Collection Rule</DisplayName>
+        <Description>Collects CPU System Total percent for KEMP LoadMaster</Description>
+        <Category>PerformanceCollection</Category>
+        <ConfirmDelivery>false</ConfirmDelivery>
+        <Target>CO.Kemp.LoadMaster</Target>
+        <Enabled>true</Enabled>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <DiscardLevel>100</DiscardLevel>
+        <ConditionDetectionId>CD</ConditionDetectionId>
+        <DataSourceId>DS</DataSourceId>
+        <DataSourceConfig>&lt;Identifier&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/Identifier&gt;&lt;Type&gt;lm&lt;/Type&gt;&lt;IntervalSeconds&gt;300&lt;/IntervalSeconds&gt;&lt;ObjectName&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/ObjectName&gt;&lt;CounterName&gt;CPU_SystemTotal&lt;/CounterName&gt;&lt;InstanceName&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/InstanceName&gt;&lt;Value&gt;$Data/Property[@Name='CPU_SystemTotal']$&lt;/Value&gt;</DataSourceConfig>
+        <DataSourceType>CO.Kemp.PerformanceDataMapper.DataSource</DataSourceType>
+        <CollectToDB>true</CollectToDB>
+        <CollectToDW>true</CollectToDW>
+      </PerformanceCollectionRuleConfig>
+    </Instance>
+    <Instance ID="Instancedf28cb789d28482ca54f723a9022b9a6" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.PerformanceCollectionRule" Version="1.0.0.0">
+      <PerformanceCollectionRuleConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <Id>LoadMaster.HA1IsActive.Collection</Id>
+        <DisplayName>KEMP LM HA1 IsActive Collection Rule</DisplayName>
+        <Description>Collects if HA1 is Active (1) or Inactive (0) KEMP LoadMaster</Description>
+        <Category>PerformanceCollection</Category>
+        <ConfirmDelivery>false</ConfirmDelivery>
+        <Target>CO.Kemp.LoadMaster</Target>
+        <Enabled>true</Enabled>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <DiscardLevel>100</DiscardLevel>
+        <ConditionDetectionId>CD</ConditionDetectionId>
+        <DataSourceId>DS</DataSourceId>
+        <DataSourceConfig>&lt;Identifier&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/Identifier&gt;&lt;Type&gt;lm&lt;/Type&gt;&lt;IntervalSeconds&gt;300&lt;/IntervalSeconds&gt;&lt;ObjectName&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/ObjectName&gt;&lt;CounterName&gt;HA1_IsActive&lt;/CounterName&gt;&lt;InstanceName&gt;$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$&lt;/InstanceName&gt;&lt;Value&gt;$Data/Property[@Name='HA1_IsActive']$&lt;/Value&gt;</DataSourceConfig>
+        <DataSourceType>CO.Kemp.PerformanceDataMapper.DataSource</DataSourceType>
+        <CollectToDB>true</CollectToDB>
+        <CollectToDW>true</CollectToDW>
+      </PerformanceCollectionRuleConfig>
+    </Instance>
+  </Instances>
+</TemplateGroup>
