@@ -4,7 +4,11 @@
       <DisplayStrings>
         <DisplayString ElementID="CO.Kemp">
           <Name>CO Kemp</Name>
-          <Description><![CDATA[Provides basic discovery and monitoring of KEMP LoadMaster Nodes and Clusters using the REST-API instead of SNMP.]]></Description>
+          <Description><![CDATA[Provides basic discovery and monitoring of KEMP LoadMaster Nodes and Clusters using the REST-API instead of SNMP.
+
+Changelog: https://github.com/ClasOhlson/CO.Kemp/blob/develop/CHANGELOG.md
+]]>
+          </Description>
         </DisplayString>
       </DisplayStrings>
     </LanguagePack>

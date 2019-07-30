@@ -3,6 +3,10 @@ param(
 	, [string] $Debug
 )
 
+$existingModules = @((Get-Module).Name) # Save existing modules
+$existingVars = @((Get-Variable -Scope Global).Name) # Save existing variables, put first in any script
+######################################
+
 $Error.Clear() # Fresh start!
 $scriptName = "Get-KempInfra.ps1"
 $eventId = 18002
@@ -344,7 +348,7 @@ foreach ($url in $urls) {
                 $vsInstance.AddProperty("$MPElement[Name='CO.Kemp.VirtualService']/VSIndex$", $identifier)
 				$vsInstance.AddProperty("$MPElement[Name='CO.Kemp.VirtualService']/VSAddress$", $vs.VSAddress)
                 $vsInstance.AddProperty("$MPElement[Name='CO.Kemp.VirtualService']/MasterVSID$", $vs.MasterVSID)
-                $vsInstance.AddProperty("$MPElement[Name='CO.Kemp.VirtualService']/Port$", $vs.Port)
+                $vsInstance.AddProperty("$MPElement[Name='CO.Kemp.VirtualService']/Port$", $vs.VSPort)
                 $vsInstance.AddProperty("$MPElement[Name='CO.Kemp.VirtualService']/NickName$", $vs.NickName)
                 $vsInstance.AddProperty("$MPElement[Name='CO.Kemp.VirtualService']/Protocol$", $vs.Protocol)
                 $vsInstance.AddProperty("$MPElement[Name='CO.Kemp.VirtualService']/QoS$", $vs.QoS)
@@ -416,7 +420,7 @@ foreach ($url in $urls) {
 						$subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.LoadMaster']/managementurl$", $url) #for LM->VS Relationship
                         $subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.SubVirtualService']/MasterVSID$", $subVS.MasterVSID)
 						$subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.SubVirtualService']/VSAddress$", $subVS.VSAddress)
-                        $subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.SubVirtualService']/Port$", $subVS.Port)
+                        $subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.SubVirtualService']/Port$", $subVS.VSPort)
                         $subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.SubVirtualService']/NickName$", $subVS.NickName)
                         $subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.SubVirtualService']/Protocol$", $subVS.Protocol)
                         $subVSInstance.AddProperty("$MPElement[Name='CO.Kemp.SubVirtualService']/QoS$", $subVS.QoS)
@@ -492,4 +496,21 @@ if ($error.Count -gt 0) {
 }
 else {
     $scomAPI.LogScriptEvent($scriptName, $eventId, 0, "`nDiscovery ran without errors." + $logString)
+}
+
+######################################
+# put last in any script
+foreach ($newVar in (Get-Variable -Exclude $existingVars -Scope Global).Name){
+    if ($newVar -ne "existingVars") {
+        $obj = Get-Variable -Name $newVar -ValueOnly
+        if ("Close" -in (Get-Member -InputObject $obj).Name) {$obj.Close}
+        if ("Dispose" -in (Get-Member -InputObject $obj).Name) {$obj.Dispose}
+        $obj = $null
+        Remove-Variable -Name "obj" -Force -Scope Global
+        Remove-Variable -Name $newVar -Force -Scope Global
+    }
+}
+Get-SCOMManagementGroupConnection | Remove-SCOMManagementGroupConnection
+foreach ($newModule in ((Get-Module).Name | Where-Object{$_ -notin $existingModules})){
+    Remove-Module -Name $newModule
 }

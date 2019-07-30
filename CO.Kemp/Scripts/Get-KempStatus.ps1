@@ -1,4 +1,8 @@
-﻿$Error.Clear() # Fresh start!
+﻿$existingModules = @((Get-Module).Name) # Save existing modules
+$existingVars = @((Get-Variable -Scope Global).Name) # Save existing variables, put first in any script
+######################################
+
+$Error.Clear() # Fresh start!
 $scriptName = "Get-KempStatus.ps1"
 $eventId = 18003
 $isDebugging = $false
@@ -402,7 +406,7 @@ foreach ($url in $LoadMasterBaseUrls) {
     }
 
     if ($allHt.Count -gt 0) {
-        # got data in allHT, which means here's a LoadMaster returned.
+        # got data in allHT, which means there's a LoadMaster returned.
 
         [string] $identifier = $allHt.managementhost
 
@@ -535,6 +539,16 @@ foreach ($url in $LoadMasterBaseUrls) {
                 }
             }
         }
+    } else {
+        # No response from LoadMaster
+        # Create LM Propertybag for a "no response" error
+        $identifier = $(([System.Uri]$url).Host)
+
+        $pbHTArray.Add(@{
+            "objecttype" = "lm"
+            "responds"   = "no"
+            "identifier" = $identifier.Trim()
+        }) | Out-Null
     }
 }
 
@@ -545,4 +559,21 @@ if ($error.Count -gt 0) {
 }
 else {
     $scomAPI.LogScriptEvent($scriptName, $eventId, 0, "`nProbe ran without errors." + $logString)
+}
+
+######################################
+# put last in any script
+foreach ($newVar in (Get-Variable -Exclude $existingVars -Scope Global).Name){
+    if ($newVar -ne "existingVars") {
+        $obj = Get-Variable -Name $newVar -ValueOnly
+        if ("Close" -in (Get-Member -InputObject $obj).Name) {$obj.Close}
+        if ("Dispose" -in (Get-Member -InputObject $obj).Name) {$obj.Dispose}
+        $obj = $null
+        Remove-Variable -Name "obj" -Force -Scope Global
+        Remove-Variable -Name $newVar -Force -Scope Global
+    }
+}
+Get-SCOMManagementGroupConnection | Remove-SCOMManagementGroupConnection
+foreach ($newModule in ((Get-Module).Name | Where-Object{$_ -notin $existingModules})){
+    Remove-Module -Name $newModule
 }
