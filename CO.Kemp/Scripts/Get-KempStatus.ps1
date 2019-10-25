@@ -311,7 +311,7 @@ class Kemp {
 
         [System.Net.ServicePointManager]::Expect100Continue = $true
         [System.Net.ServicePointManager]::MaxServicePointIdleTime = 10000
-        [System.Net.ServicePointManager]::ServerCertificateValidationCallback = {$true} #DevSkim: ignore DS126185 until 2019-06-01 
+        [System.Net.ServicePointManager]::ServerCertificateValidationCallback = {$true} #DevSkim: ignore DS126185 
         [System.Net.ServicePointManager]::SecurityProtocol = 'Tls11', 'Tls12'
 
         $Request = [System.Net.HttpWebRequest]::Create("$(($this.AdminAdress))/$Url")
