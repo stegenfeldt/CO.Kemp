@@ -311,7 +311,7 @@ class Kemp {
 
         [System.Net.ServicePointManager]::Expect100Continue = $true
         [System.Net.ServicePointManager]::MaxServicePointIdleTime = 10000
-        [System.Net.ServicePointManager]::ServerCertificateValidationCallback = {$true} #DevSkim: ignore DS126185 until 2019-06-01 
+        [System.Net.ServicePointManager]::ServerCertificateValidationCallback = {$true} #DevSkim: ignore DS126185 
         [System.Net.ServicePointManager]::SecurityProtocol = 'Tls11', 'Tls12'
 
         $Request = [System.Net.HttpWebRequest]::Create("$(($this.AdminAdress))/$Url")
@@ -430,15 +430,15 @@ foreach ($url in $LoadMasterBaseUrls) {
             "hostname"   = $allHt.managementhost
             "responds"   = "yes"
             "identifier" = $identifier.Trim()
-            "CPU_SystemTotal" = $lmStatsHt.CPU_SystemTotal
-            "VSTotals_PktsPerSec" = $lmStatsHt.VSTotals_PktsPerSec
-            "MEM_used" = $lmStatsHt.MEM_used
-            "VSTotals_BitsPerSec" = $lmStatsHt.VSTotals_BitsPerSec
-            "MEM_usedPct" = $lmStatsHt.MEM_usedPct
-            "VSTotals_ConnsPerSec" = $lmStatsHt.VSTotals_ConnsPerSec
-            "VSTotals_BytesPerSec" = $lmStatsHt.VSTotals_BytesPerSec
-            "MEM_freePct" = $lmStatsHt.MEM_freePct
-            "MEM_free" = $lmStatsHt.MEM_free
+            "CPU_SystemTotal" = $lmStatsHt.CPU_SystemTotal -as [double]
+            "VSTotals_PktsPerSec" = $lmStatsHt.VSTotals_PktsPerSec -as [double]
+            "MEM_used" = $lmStatsHt.MEM_used -as [double]
+            "VSTotals_BitsPerSec" = $lmStatsHt.VSTotals_BitsPerSec -as [double]
+            "MEM_usedPct" = $lmStatsHt.MEM_usedPct -as [double]
+            "VSTotals_ConnsPerSec" = $lmStatsHt.VSTotals_ConnsPerSec -as [double]
+            "VSTotals_BytesPerSec" = $lmStatsHt.VSTotals_BytesPerSec -as [double]
+            "MEM_freePct" = $lmStatsHt.MEM_freePct -as [double]
+            "MEM_free" = $lmStatsHt.MEM_free -as [double]
             "HA1_IsActive" = $ha1Active
             "HA2_IsActive" = $ha2Active
             "HA_Mode" = $allHt.hamode
@@ -463,8 +463,8 @@ foreach ($url in $LoadMasterBaseUrls) {
                     "enabled"    = $vs.Enable
                     "status"     = $vs.Status
                     "identifier" = $identifier.Trim()
-                    "ActiveConns" = $vsStats.ActiveConns
-                    "ConnsPerSec" = $vsStats.ConnsPerSec
+                    "ActiveConns" = $vsStats.ActiveConns -as [double]
+                    "ConnsPerSec" = $vsStats.ConnsPerSec -as [double]
                 }) | Out-Null
 
                 $logString += "`n`t`tVS: $identifier`tenabled=$($vs.Enable),Status=$($vs.Status)"
@@ -483,8 +483,8 @@ foreach ($url in $LoadMasterBaseUrls) {
 							"status" = $rs.Status
 							"enabled" = $rs.Enable
                             "identifier" = $identifier
-                            "ActiveConns" = $rsStats.ActiveConns
-                            "ConnsPerSec" = $rsStats.ConnsPerSec
+                            "ActiveConns" = $rsStats.ActiveConns -as [double]
+                            "ConnsPerSec" = $rsStats.ConnsPerSec -as [double]
 						}) | Out-Null
 
                         $logString += "`n`t`t`tRS: $($rsKey)-$($rs.Addr)"
@@ -507,8 +507,8 @@ foreach ($url in $LoadMasterBaseUrls) {
                             "enabled"    = $subVS.Enable
                             "status"     = $subVS.Status
                             "identifier" = $identifier.Trim()
-                            "ActiveConns" = $subVsStats.ActiveConns
-                            "ConnsPerSec" = $subVsStats.ConnsPerSec
+                            "ActiveConns" = $subVsStats.ActiveConns -as [double]
+                            "ConnsPerSec" = $subVsStats.ConnsPerSec -as [double]
                         }) | Out-Null
 
                         $logString += "`n`t`t`tSubVS: $identifier`tenabled=$($subVS.Enable),status=$($subVS.Status)"
@@ -528,8 +528,8 @@ foreach ($url in $LoadMasterBaseUrls) {
 									"status" = $rs.Status
 									"enabled" = $rs.Enable
                                     "identifier" = $identifier
-                                    "ActiveConns" = $rsStats.ActiveConns
-                                    "ConnsPerSec" = $rsStats.ConnsPerSec
+                                    "ActiveConns" = $rsStats.ActiveConns -as [double]
+                                    "ConnsPerSec" = $rsStats.ConnsPerSec -as [double]
 								}) | Out-Null
                                 $logString += "`n`t`t`t`tRS: $($rsKey)-$($rs.Addr)"
                             }

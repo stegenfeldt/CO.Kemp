@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Automatic copy of build artifacts to LatestBuild folder without AutoDeploy
+
+### Fixed
+
+- (1.0.0.180) ActiveConns sometimes returning empty string with script errors as consequence
+- (1.0.0.180) ConnsPerSec sometimes returning empty string with script errors as consequence
+
 ## [v1.0.0-alpha.3]
 
 ### Added
