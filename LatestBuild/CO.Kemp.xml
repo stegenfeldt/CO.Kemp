@@ -1677,7 +1677,7 @@ foreach ($newModule in ((Get-Module).Name | Where-Object{$_ -notin $existingModu
           <WriteAction ID="CollectToDW" TypeID="MSDL!Microsoft.SystemCenter.DataWarehouse.PublishPerformanceData" />
         </WriteActions>
       </Rule>
-      <Rule ID="CO.Kemp.LoadMaster.CPUSystemTotal.Collection" Target="CO.Kemp.LoadMaster" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
+      <Rule ID="CO.Kemp.LoadMaster.HA2IsActive.Collection" Target="CO.Kemp.LoadMaster" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
         <Category>PerformanceCollection</Category>
         <DataSources>
           <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource">
@@ -1685,9 +1685,9 @@ foreach ($newModule in ((Get-Module).Name | Where-Object{$_ -notin $existingModu
             <Type>lm</Type>
             <IntervalSeconds>300</IntervalSeconds>
             <ObjectName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</ObjectName>
-            <CounterName>CPU_SystemTotal</CounterName>
+            <CounterName>HA2_IsActive</CounterName>
             <InstanceName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</InstanceName>
-            <Value>$Data/Property[@Name='CPU_SystemTotal']$</Value>
+            <Value>$Data/Property[@Name='HA2_IsActive']$</Value>
           </DataSource>
         </DataSources>
         <WriteActions>
@@ -1814,6 +1814,42 @@ foreach ($newModule in ((Get-Module).Name | Where-Object{$_ -notin $existingModu
             <CounterName>VSTotals_BytesPerSec</CounterName>
             <InstanceName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</InstanceName>
             <Value>$Data/Property[@Name='VSTotals_BytesPerSec']$</Value>
+          </DataSource>
+        </DataSources>
+        <WriteActions>
+          <WriteAction ID="CollectToDB" TypeID="SC!Microsoft.SystemCenter.CollectPerformanceData" />
+          <WriteAction ID="CollectToDW" TypeID="MSDL!Microsoft.SystemCenter.DataWarehouse.PublishPerformanceData" />
+        </WriteActions>
+      </Rule>
+      <Rule ID="CO.Kemp.LoadMaster.CPUSystemTotal.Collection" Target="CO.Kemp.LoadMaster" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
+        <Category>PerformanceCollection</Category>
+        <DataSources>
+          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource">
+            <Identifier>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</Identifier>
+            <Type>lm</Type>
+            <IntervalSeconds>300</IntervalSeconds>
+            <ObjectName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</ObjectName>
+            <CounterName>CPU_SystemTotal</CounterName>
+            <InstanceName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</InstanceName>
+            <Value>$Data/Property[@Name='CPU_SystemTotal']$</Value>
+          </DataSource>
+        </DataSources>
+        <WriteActions>
+          <WriteAction ID="CollectToDB" TypeID="SC!Microsoft.SystemCenter.CollectPerformanceData" />
+          <WriteAction ID="CollectToDW" TypeID="MSDL!Microsoft.SystemCenter.DataWarehouse.PublishPerformanceData" />
+        </WriteActions>
+      </Rule>
+      <Rule ID="CO.Kemp.LoadMaster.HA1IsActive.Collection" Target="CO.Kemp.LoadMaster" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
+        <Category>PerformanceCollection</Category>
+        <DataSources>
+          <DataSource ID="DS" TypeID="CO.Kemp.PerformanceDataMapper.DataSource">
+            <Identifier>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</Identifier>
+            <Type>lm</Type>
+            <IntervalSeconds>300</IntervalSeconds>
+            <ObjectName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</ObjectName>
+            <CounterName>HA1_IsActive</CounterName>
+            <InstanceName>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</InstanceName>
+            <Value>$Data/Property[@Name='HA1_IsActive']$</Value>
           </DataSource>
         </DataSources>
         <WriteActions>
@@ -1961,6 +1997,76 @@ foreach ($newModule in ((Get-Module).Name | Where-Object{$_ -notin $existingModu
           </HealthyExpression>
         </Configuration>
       </UnitMonitor>
+      <UnitMonitor ID="CO.Kemp.LoadMaster.APIAvailability.Monitor" Accessibility="Public" Enabled="true" Target="CO.Kemp.LoadMaster" ParentMonitorID="Health!System.Health.AvailabilityState" Remotable="true" Priority="Normal" TypeID="CO.Kemp.StatusMonitor.ThreeStateMonitorType" ConfirmDelivery="false">
+        <Category>AvailabilityHealth</Category>
+        <AlertSettings AlertMessage="CO.Kemp.LoadMaster.APIAvailability.Monitor.AlertMessage">
+          <AlertOnState>Error</AlertOnState>
+          <AutoResolve>true</AutoResolve>
+          <AlertPriority>High</AlertPriority>
+          <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+        </AlertSettings>
+        <OperationalStates>
+          <OperationalState ID="Healthy" MonitorTypeStateID="Healthy" HealthState="Success" />
+          <OperationalState ID="Warning" MonitorTypeStateID="Warning" HealthState="Warning" />
+          <OperationalState ID="Error" MonitorTypeStateID="Error" HealthState="Error" />
+        </OperationalStates>
+        <Configuration>
+          <Identifier>$Target/Property[Type='CO.Kemp.LoadMaster']/hostname$</Identifier>
+          <Type>lm</Type>
+          <IntervalSeconds>600</IntervalSeconds>
+          <SyncTime />
+          <TimeoutSeconds>120</TimeoutSeconds>
+          <ErrorExpression>
+            <SimpleExpression>
+              <ValueExpression>
+                <XPathQuery Type="String">Property[@Name='responds']</XPathQuery>
+              </ValueExpression>
+              <Operator>Equal</Operator>
+              <ValueExpression>
+                <Value Type="String">no</Value>
+              </ValueExpression>
+            </SimpleExpression>
+          </ErrorExpression>
+          <WarningExpression>
+            <!--Unknown state, PB but "responds" is neither "yes" or "no"-->
+            <And>
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">Property[@Name='responds']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>NotEqual</Operator>
+                  <ValueExpression>
+                    <Value Type="String">no</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="String">Property[@Name='responds']</XPathQuery>
+                  </ValueExpression>
+                  <Operator>NotEqual</Operator>
+                  <ValueExpression>
+                    <Value Type="String">yes</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </And>
+          </WarningExpression>
+          <HealthyExpression>
+            <SimpleExpression>
+              <ValueExpression>
+                <XPathQuery Type="String">Property[@Name='responds']</XPathQuery>
+              </ValueExpression>
+              <Operator>Equal</Operator>
+              <ValueExpression>
+                <Value Type="String">yes</Value>
+              </ValueExpression>
+            </SimpleExpression>
+          </HealthyExpression>
+        </Configuration>
+      </UnitMonitor>
       <UnitMonitor ID="CO.Kemp.VirtualServiceStatusMonitor" Accessibility="Public" Enabled="true" Target="CO.Kemp.VirtualService" ParentMonitorID="Health!System.Health.AvailabilityState" Remotable="true" Priority="Normal" TypeID="CO.Kemp.StatusMonitor.ThreeStateMonitorType" ConfirmDelivery="false">
         <Category>AvailabilityHealth</Category>
         <AlertSettings AlertMessage="CO.Kemp.VirtualServiceStatusMonitor.AlertMessage">
@@ -2036,6 +2142,7 @@ foreach ($newModule in ((Get-Module).Name | Where-Object{$_ -notin $existingModu
     <StringResources>
       <StringResource ID="CO.Kemp.SubVSStatusMonitor.AlertMessage" />
       <StringResource ID="CO.Kemp.RealServerStatusMonitor.AlertMessage" />
+      <StringResource ID="CO.Kemp.LoadMaster.APIAvailability.Monitor.AlertMessage" />
       <StringResource ID="CO.Kemp.VirtualServiceStatusMonitor.AlertMessage" />
     </StringResources>
   </Presentation>
@@ -2330,6 +2437,29 @@ This might effect the availability of it's VirtualService, depending on the numb
           <Name>Down</Name>
           <Description>Down</Description>
         </DisplayString>
+        <DisplayString ElementID="CO.Kemp.LoadMaster.APIAvailability.Monitor">
+          <Name>LoadMaster API Availability</Name>
+          <Description>Monitors access to LoadMaster Management Interface API.</Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.LoadMaster.APIAvailability.Monitor.AlertMessage">
+          <Name>Kemp LoadMaster API Unreachable</Name>
+          <Description>The LoadMaster API is unreachable!
+
+This could indicate that the KEMP LoadMaster is completely unavailable.
+It could also mean that monitoring access has been removed, or network access from SCOM-servers have been blocked.</Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.LoadMaster.APIAvailability.Monitor" SubElementID="Healthy">
+          <Name>Responds</Name>
+          <Description>Responds</Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.LoadMaster.APIAvailability.Monitor" SubElementID="Warning">
+          <Name>PossibleIssue</Name>
+          <Description>PossibleIssue</Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.LoadMaster.APIAvailability.Monitor" SubElementID="Error">
+          <Name>NoResponse</Name>
+          <Description>NoResponse</Description>
+        </DisplayString>
         <DisplayString ElementID="CO.Kemp.VirtualServiceStatusMonitor">
           <Name>CO Kemp VirtualService Status Monitor</Name>
           <Description>Checks status of Kemp VirtualService</Description>
@@ -2394,9 +2524,9 @@ This might effect the availability of it's VirtualService, depending on the numb
           <Name>KEMP SubVS Connections per Second Collection Rule</Name>
           <Description>Collects Connections per Second for KEMP SubVS</Description>
         </DisplayString>
-        <DisplayString ElementID="CO.Kemp.LoadMaster.CPUSystemTotal.Collection">
-          <Name>KEMP LM CPU System Total Collection Rule</Name>
-          <Description>Collects CPU System Total percent for KEMP LoadMaster</Description>
+        <DisplayString ElementID="CO.Kemp.LoadMaster.HA2IsActive.Collection">
+          <Name>KEMP LM HA2 IsActive Collection Rule</Name>
+          <Description>Collects if HA2 is Active (1) or Inactive (0) KEMP LoadMaster</Description>
         </DisplayString>
         <DisplayString ElementID="CO.Kemp.LoadMaster.MEMUsed.Collection">
           <Name>KEMP LM MEM Used Total Collection Rule</Name>
@@ -2425,6 +2555,14 @@ This might effect the availability of it's VirtualService, depending on the numb
         <DisplayString ElementID="CO.Kemp.LoadMaster.VSTotals_BytesPerSec.Collection">
           <Name>KEMP LM VSTOTALS Bytes per Sec Collection Rule</Name>
           <Description>Collects VSTOTALS Bytes per Second for KEMP LoadMaster</Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.LoadMaster.CPUSystemTotal.Collection">
+          <Name>KEMP LM CPU System Total Collection Rule</Name>
+          <Description>Collects CPU System Total percent for KEMP LoadMaster</Description>
+        </DisplayString>
+        <DisplayString ElementID="CO.Kemp.LoadMaster.HA1IsActive.Collection">
+          <Name>KEMP LM HA1 IsActive Collection Rule</Name>
+          <Description>Collects if HA1 is Active (1) or Inactive (0) KEMP LoadMaster</Description>
         </DisplayString>
         <DisplayString ElementID="CO.Kemp.KempRunasProfile">
           <Name>KEMP Runas Profile</Name>
