@@ -9,12 +9,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Automatic copy of build artifacts to LatestBuild folder without AutoDeploy
+
+### Fixed
+
+- (1.0.0.180) ActiveConns sometimes returning empty string with script errors as consequence
+- (1.0.0.180) ConnsPerSec sometimes returning empty string with script errors as consequence
+
+## [v1.0.0-alpha.3]
+
+### Added
+
 - CO.Kemp.LoadMaster.APIAvailability.Monitor
 - CO.Kemp.LoadMaster.HA1IsActive.Collection
 - CO.Kemp.LoadMaster.HA2IsActive.Collection
 
 ### Changed
+
 - Added variable/module cleanup routines to scripts to minimize memory leakage
+- Improved debugging settings, removed unwanted output
+
+### Fixed
+
+- VS Port discovery, now functional and SquaredUp VADA-compatible.
 
 ## [v1.0.0-alpha.2]
 
@@ -59,6 +76,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - RunAs profile
 - Monitoring on VS/SubVS and RS
 
-[Unreleased]: https://github.com/ClasOhlson/CO.Kemp/compare/v1.0.0-alpha.2...HEAD
+[Unreleased]: https://github.com/ClasOhlson/CO.Kemp/compare/v1.0.0-alpha.3...HEAD
+[v1.0.0-alpha.3]: https://github.com/ClasOhlson/CO.Kemp/compare/v1.0.0-alpha.2...v1.0.0-alpha.3
 [v1.0.0-alpha.2]: https://github.com/ClasOhlson/CO.Kemp/compare/v1.0.0-alpha...v1.0.0-alpha.2
 [v1.0.0-alpha]: https://github.com/ClasOhlson/CO.Kemp/compare/2363f6e3025e430963c61f8420f05d549ddfe007...v1.0.0-alpha
