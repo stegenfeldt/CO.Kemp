@@ -25,7 +25,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CO.Kemp.LoadMaster.HA2IsActive.Collection
 
 ### Changed
-
 - Added variable/module cleanup routines to scripts to minimize memory leakage
 - Improved debugging settings, removed unwanted output
 
